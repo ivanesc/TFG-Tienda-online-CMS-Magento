@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<package>
+    <name>MntsInfotech_CookieConsent</name>
+    <version>0.1.5</version>
+    <stability>stable</stability>
+    <license>OSL</license>
+    <channel>community</channel>
+    <extends/>
+    <summary>Responsive Cookie Consent is simple and responsive extension to display the message for cookie usage  by site.</summary>
+    <description>Responsive Cookie Consent is simple and responsive extension to display the cookie consent message for cookie usage by site. Once user clicks on "Close" button it disappears.&#xD;
+&#xD;
+To edit text message go to System -&gt;Configuration -&gt; MNTS Infotech -&gt; Cookie Consent and change the message you want in right hand side panel.&#xD;
+&#xD;
+To change css go to file skin\frontend\base\default\css\mntsinfotech\cookieconsent.css of this extension and edit it.</description>
+    <notes>Fixed some language related bugs.</notes>
+    <authors><author><name>sukhvir kushwah</name><user>sukhvir13</user><email>kushwahsukhvir@gmail.com</email></author></authors>
+    <date>2014-11-05</date>
+    <time>04:08:42</time>
+    <contents><target name="magecommunity"><dir name="MntsInfotech"><dir name="CookieConsent"><dir name="Helper"><file name="Data.php" hash="6262c6c74bb269c6d5d3dbea91881557"/></dir><dir name="Model"><file name="Observer.php" hash="f8fa0a4e4eea900a78f2d1fed7ef2a89"/></dir><dir name="etc"><file name="adminhtml.xml" hash="2273ab42ba80054cac96412325d7ff4d"/><file name="config.xml" hash="9e382d29eb65b2b8a032ec3729846bc7"/><file name="system.xml" hash="ce623b266763a1ba9a1c29cad4e8394f"/></dir></dir></dir></target><target name="mageetc"><dir name="modules"><file name="MntsInfotech_CookieConsent.xml" hash="94ad3ec1b91887ca2d3e80c3641ed71b"/></dir></target><target name="magedesign"><dir name="frontend"><dir name="base"><dir name="default"><dir name="layout"><file name="mntsinfotech_cookieconsent.xml" hash="869383bbbd5ce980927edfd78ce0b029"/></dir><dir name="template"><dir name="mntsinfotech"><dir name="cookieconsent"><file name="box.phtml" hash="e9903bc072c606bf69b75d17cf446631"/></dir></dir></dir></dir></dir></dir></target><target name="mageweb"><dir name="js"><dir name="mntsinfotech"><file name="cookieconsent.js" hash="8bee787e71be6bd32f5a9b5a63e99753"/><file name="jquery-1.10.2.min.js" hash="628072e7212db1e8cdacb22b21752cda"/><file name="jquery-1.10.2.min.map" hash="6c3ccfc221d36777d383b6e04d0b8af9"/></dir></dir></target><target name="mageskin"><dir name="frontend"><dir name="base"><dir name="default"><dir name="css"><dir name="mntsinfotech"><file name="cookieconsent.css" hash="f68b72b39acad402a3ef914129a59553"/></dir></dir></dir></dir></dir></target></contents>
+    <compatible/>
+    <dependencies><required><php><min>5.1.0</min><max>6.0.0</max></php></required></dependencies>
+</package>

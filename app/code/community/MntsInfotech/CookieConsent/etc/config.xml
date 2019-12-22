@@ -1,0 +1,66 @@
+<config>
+    <modules>
+        <MntsInfotech_CookieConsent>
+            <version>0.1.5</version>
+        </MntsInfotech_CookieConsent>
+    </modules>
+    <frontend>
+        <layout>
+            <updates>
+                <mntsinfotech_cookieconsent>
+                    <file>mntsinfotech_cookieconsent.xml</file>
+                </mntsinfotech_cookieconsent>
+            </updates>
+        </layout>
+        <events>
+            <core_block_abstract_prepare_layout_before>
+                <observers>
+                    <mntsinfotech_jquery_prepare_layout_before>
+                        <class>cookieconsent/observer</class>
+                        <method>prepareLayoutBefore</method>
+                    </mntsinfotech_jquery_prepare_layout_before>
+                </observers>
+            </core_block_abstract_prepare_layout_before>
+        </events>
+    </frontend>
+    <global>
+        <blocks>
+            <cookieconsent>
+                <class>MntsInfotech_CookieConsent_Block</class>
+            </cookieconsent>
+        </blocks>
+
+        <helpers>
+            <cookieconsent>
+                <class>MntsInfotech_CookieConsent_Helper</class>
+            </cookieconsent>
+        </helpers>
+
+        <models>
+            <cookieconsent>
+                <class>MntsInfotech_CookieConsent_Model</class>
+            </cookieconsent>
+        </models>
+    </global>
+    
+    <default>
+
+        <mntsinfotechcookieconsent>
+            
+            <message>
+                <message>This site uses cookies to improve your browsing experience. By continuing to use this site, you accept these cookies.</message>
+            </message>
+            <general>
+                <enabled>1</enabled>
+                <lifetime>31</lifetime>
+            </general>
+            <link>
+                <enabled>0</enabled>
+                <linktext>View Cookie Policy</linktext>
+                <link>http://www.mntsinfotech.com</link>
+            </link>
+        </mntsinfotechcookieconsent>
+
+    </default>
+    
+</config>

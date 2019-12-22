@@ -1,0 +1,47 @@
+<?php 
+$helper = Mage::helper("exitscreen");
+$delay = $helper->getDelayTime();
+$cookieExpire = $helper->getCookieExpire();
+$blockId = $helper->getBlockId();
+$showPop = $helper->showPopUp();
+$height = $helper->getHeight();
+$width = $helper->getWidth();
+$blockTitle = $helper->getBlockTitle();
+
+if($showPop == "Y"):
+?><div class="outer-bg">&nbsp;</div>
+<div class="pop-up" style="height:<?php echo $height; ?>; width:<?php echo $width; ?>">
+	<a id="close" href="#">X</a>
+	<h3><?php echo $blockTitle; ?></h3>
+	<div class="pop-cont"><?php echo $this->getLayout()->createBlock('cms/block')->setBlockId($blockId)->toHtml(); ?></div>
+</div>
+
+<script type="text/javascript">
+jQuery(document).ready(function($){
+	 jQuery(document).bind("mouseleave", function(e){
+		if (e.pageY - jQuery(window).scrollTop() <= 1 || e.pageY - jQuery(window).scrollTop() >= jQuery(window).height()){
+			//console.log(e.pageY);
+			if(getCookie("delay")!="Y"){
+				if(getCookie("exitscreen")!="Y"){
+					$('.outer-bg').fadeIn();
+					$('.pop-up').addClass('open');						
+					setCookie("exitscreen","Y",<?php echo $cookieExpire ?>);
+				}
+			}			
+		}
+	 });
+	addEvent(window,"load",function(e){
+		// checks if cookie is set for delay
+		if(getCookie("delay")!="Y"){
+			// sets delay for displaying pop-up
+			setCookie("delay","Y",<?php echo $delay; ?>);
+		}
+	});	
+	// Close popup
+	jQuery('.pop-up #close').click(function(){
+		jQuery('.outer-bg').fadeOut();
+		jQuery('.pop-up').removeClass('open');
+	});
+});
+</script>
+<?php endif; ?>

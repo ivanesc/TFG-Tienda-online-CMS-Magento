@@ -1,0 +1,29 @@
+<?php if(Mage::getStoreConfig('mntsinfotechcookieconsent/general/enabled')==1) { ?>
+<?php
+//cookie name
+$ncookiedays = Mage::getStoreConfig('mntsinfotechcookieconsent/general/lifetime');
+if($ncookiedays == 0 || $ncookiedays==''){
+    $ncookiedays=31;
+}
+
+?>
+<script type="text/javascript">
+        jQuery.noConflict();
+        jQuery(document).ready(function(){
+                if(!mntsinfotechReadCookie("catAccCookies")){//If the cookie has not been set
+                        jQuery("#mntsinfotech-cookie-bar").show();
+                }
+        });
+        
+         jQuery.noConflict();
+
+jQuery( document ).ready(function( $ ) {
+// You can use the locally-scoped $ in here as an alias to jQuery.
+// or change $ above to $j
+            if(!mntsinfotechReadCookie("catAccCookies")){//If the cookie has not been set
+                        $("#mntsinfotech-cookie-bar").show();
+                }
+});
+</script>
+<div id="mntsinfotech-cookie-bar"><?php echo Mage::getStoreConfig('mntsinfotechcookieconsent/message/message'); ?><?php if(Mage::getStoreConfig('mntsinfotechcookieconsent/link/enabled')==1 ){ ?>&nbsp;<a href="<?php echo Mage::getStoreConfig('mntsinfotechcookieconsent/link/link'); ?>" target="_blank"><?php echo Mage::getStoreConfig('mntsinfotechcookieconsent/link/linktext'); ?></a><?php } ?>&nbsp;<button id="mntsinfotechCookie" tabindex=1 onclick="mntsinfotechAcceptCookies(<?php echo $ncookiedays; ?>);" class="mnts_btn"><?php echo __('Close'); ?></button></div>
+<?php } ?>

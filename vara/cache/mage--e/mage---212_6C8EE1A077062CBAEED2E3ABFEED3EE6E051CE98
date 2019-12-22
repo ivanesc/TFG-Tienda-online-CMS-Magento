@@ -1,0 +1,32 @@
+<script src="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/skin/frontend/default/theme692/js/jquery.mb.YTPlayer.js"> </script>
+<script type="text/javascript">
+    jQuery(document).ready(function() {
+        var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|Windows Phone/i.test(navigator.userAgent);  
+        if(jQuery(".box-1").length){ 
+            jQuery(function(){
+                jQuery(window).resize(function() {
+                   var bodyWidth=jQuery('body').width();
+                   jQuery('.box-1').css({'width':bodyWidth, 'margin-left':-bodyWidth/2});
+                }).trigger('resize');
+                if(jQuery(!isMobile).length){ 
+                    jQuery("#bgndVideo").YTPlayer();
+                };
+            });
+        };
+        
+});
+</script>
+<div style="background: url(http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/skin/frontend/default/theme692/images/media/video.jpg)  no-repeat center top;
+	background-size: cover;" class="box-1">
+    <div id="bgndVideo" data-property="{videoURL:'https://www.youtube.com/watch?v=djeqoWuDTcg', containment:'#bgndVideo', autoPlay:true, stopMovieOnBlur:false, addRaster:true, mute:true, opacity:1, loop:true, showControls:false, quality:'high', startAt:'0', mute:'true'}"></div>
+<div class="container">
+    	<div class="row">
+    		<div class="col-xs-12">
+    			<div class="title-row">{{{SURPRISE YOU IN MARY`S STORE WITH OUR INCREDIBLE <br /> CRAFTS ACCESSORIES}}{{SURPRISE YOU IN MARY`S STORE WITH OUR INCREDIBLE <br /> CRAFTS ACCESSORIES}}{{SURPRISE YOU IN MARY`S STORE WITH OUR INCREDIBLE <br /> CRAFTS ACCESSORIES}}{{Mage_Page}}}</div>
+    			<div class="desc-row">{{{ENTER AND YOU FIND THE BEST FOFUCHAS COLLECTION WITH THE BEST PRICE}}{{ENTER AND YOU FIND THE BEST FOFUCHAS COLLECTION WITH THE BEST PRICE}}{{ENTER AND YOU FIND THE BEST FOFUCHAS COLLECTION WITH THE BEST PRICE}}{{Mage_Page}}}</div>
+    			<button type="button" title="Ver colección fofuchas" class="button btn-row" onclick="setLocation('http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/gomaevafofuchas')"><span><span>{{{To see fofuchas collection}}{{To see fofuchas collection}}{{To see fofuchas collection}}{{Mage_Page}}}</span></span></button>
+    		</div>
+    	</div>
+    </div>
+</div>
+   

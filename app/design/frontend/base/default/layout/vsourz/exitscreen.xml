@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+	<default>
+		<reference name="head">
+			<action method="addItem" ifconfig="exitscreen/settings/loadjs"><type>skin_js</type><name>js/exitscreen/jquery-1.10.2.min.js</name></action>
+			<action method="addItem" ifconfig="exitscreen/settings/enable_extension"><type>skin_js</type><name>js/exitscreen/exitpopup.js</name></action>
+			<action method="addItem" ifconfig="exitscreen/settings/enable_extension"><type>skin_css</type><name>css/exitscreen/exitpopup.css</name></action>
+		</reference>
+		<reference name="head">
+			<block type="exitscreen/exitscreen" name="exitscreen">
+				<action method="setTemplate" ifconfig="exitscreen/settings/enable_extension"><template>vsourz/exitscreen.phtml</template>
+				</action>
+			</block>
+		</reference>
+	</default>
+</layout>

@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Form Key
+ *
+ * @category    Artio
+ * @package     Artio_FormKey
+ * @copyright   Copyright (c) 2014 Artio s.r.o (http://www.artio.net)
+ */
+-->
+<config>
+    <modules>
+        <Artio_FormKey>
+            <active>true</active>
+            <codePool>community</codePool>
+        </Artio_FormKey>
+    </modules>
+</config>

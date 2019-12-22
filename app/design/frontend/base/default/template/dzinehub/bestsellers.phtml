@@ -1,0 +1,130 @@
+<?php
+/***************************************************************************
+	@extension	: Dynamic Bestseller Products.
+	@Version	: 1.0.0.1
+	@package	: Dzinehub_Bestseller	
+	@class		: app/code/community/Dzinehub/Bestseller/Block/Product/Bestsellers.php	
+	@author		: arun@dzine-hub.com
+	@support	: http://www.dzine-hub.com/contact-us/		
+***************************************************************************/
+
+$extensionenableflag = Mage::getStoreConfig('dzinehub_bestseller/general/active',Mage::app()->getStore());
+if($extensionenableflag == 1 )
+{
+	$titleyesno = Mage::getStoreConfig('dzinehub_bestseller/general/titleyesno',Mage::app()->getStore());
+	if($titleyesno == 1)
+	{
+		$titletext = Mage::getStoreConfig('dzinehub_bestseller/general/titletext',Mage::app()->getStore());
+	}
+	$numberofitems = Mage::getStoreConfig('dzinehub_bestseller/general/numberofitems',Mage::app()->getStore());
+	if($numberofitems == "")
+	{
+		$numberofitems = 4;
+	}
+	$showproducttitle = Mage::getStoreConfig('dzinehub_bestseller/general/showproducttitle',Mage::app()->getStore());
+	$showproductprice = Mage::getStoreConfig('dzinehub_bestseller/general/showproductprice',Mage::app()->getStore());
+	$showproductviewlink = Mage::getStoreConfig('dzinehub_bestseller/general/showproductviewlink',Mage::app()->getStore());
+	$totalPerPage = $numberofitems; // Display
+	$counter = 1;
+
+	$_productCollection = $this->getBestsellerProduct();
+	$storeId = Mage::app()->getStore()->getId();
+?>
+<?php
+	if($titletext <> "")
+	{
+?>
+		<h2 class="dzbestsellertitle"><?php echo $titletext; ?></h2>
+<?php
+	}
+?>
+<div class="dzbestseller" id="dzbestseller">
+	<ul class="dzbestseller">
+	<?php
+	foreach($_productCollection as $product)
+	{	
+		$productTypecheck = "0";
+		$productentity = $product->entity_id; 
+
+		$product_1=Mage::getModel('catalog/product')->load($productentity);
+		$productVisibileCheck = $product_1->visibility;
+		$productType=$product_1->getTypeID();
+
+		/****** Check Product Type - Simple/Configurable ******/
+
+		if($productType == 'simple' && ($productVisibileCheck == "2" || $productVisibileCheck == "4") && $product_1['stock_item']['is_in_stock'] == '1' && $product_1['status'] == "1")
+		{   
+			$productTypecheck = "1";
+		}      
+		
+		/****** Check configurable product - Type/Visibile ******/
+
+		if($productType == 'configurable' && ($productVisibileCheck == "2" || $productVisibileCheck == "4"))
+		{   
+			/****** Get the list of associated items of configurable product ******/
+			
+			$configurable= Mage::getModel('catalog/product_type_configurable')->setProduct($product_1);
+			$simpleCollection = $configurable->getUsedProductCollection()->addAttributeToSelect('*')->addFilterByRequiredOptions();
+
+			/****** Check associated items of configurable product - Status/instock ******/
+
+			foreach($simpleCollection as $simpleProduct)
+			{
+				if($simpleProduct['status'] == "1" && $simpleProduct['stock_item']['is_in_stock'] == '1' )
+				{
+					$productTypecheck = "1";
+				}
+			}
+
+		}
+
+		/****** Display best selling product ******/
+		if($productTypecheck == "1")
+		{ 
+			if($counter <= $totalPerPage)
+			{
+				$productUrl =  $product->getProductUrl() ?>
+				<li>
+					<img src="<?php echo $this->helper('catalog/image')->init($product, 'image')->resize(120); ?>" alt="Product image"  />
+					<?php
+					if($showproducttitle == 1)
+					{?>
+						<a href="<?php echo $productUrl ?>" title="View <?php echo $product->name ?>">
+							<span><?php echo $product->name ?></span>
+						</a>
+					<?php
+					}
+					if($showproductprice == 1)
+					{?>
+						<?php echo $this->getPriceHtml($product, true, '') ?>
+					<?php
+					}
+					if($showproductviewlink == 1)
+					{?>
+						<a href="<?php echo $productUrl ?>" title="View <?php echo $product->name ?>">View
+						</a>
+					<?php /*echo (int)$product->ordered_qty;*/
+					}
+					?>
+				</li>
+	<?php 
+			$counter++; 
+			}
+			
+		} 
+		
+	} ?>
+	</ul>
+</div>
+<?php
+if ($counter<=1)
+{?>
+	<script type="text/javascript">
+		document.getElementById("dzdailydealmain").style.display="none";
+	</script>
+
+<?php
+}?>
+<?php
+}
+?>	

@@ -1,0 +1,59 @@
+<?xml version="1.0" ?>
+<!--
+/**
+ * Form Key
+ *
+ * @category    Artio
+ * @package     Artio_FormKey
+ * @copyright   Copyright (c) 2014 Artio s.r.o (http://www.artio.net)
+ */
+-->
+<config>
+    <modules>
+        <Artio_FormKey>
+            <version>1.0.0</version>
+        </Artio_FormKey>
+    </modules>
+    <global>
+        <models>
+            <artio_formkey>
+                <class>Artio_FormKey_Model</class>
+            </artio_formkey>
+        </models>
+        <helpers>
+            <artio_formkey>
+                <class>Artio_FormKey_Helper</class>
+            </artio_formkey>
+        </helpers>
+        <events>
+            <controller_action_predispatch>
+                <observers>
+                    <controller_action_before>
+                        <type>singleton</type>
+                        <class>artio_formkey/observer</class>
+                        <method>disableFormKey</method>
+                    </controller_action_before>
+                </observers>
+            </controller_action_predispatch>
+        </events>
+    </global>
+    <default>
+        <web>
+            <formkey>
+                <disable_formkey>0</disable_formkey>
+                <actions>
+checkout_cart_add
+checkout_cart_addgroup
+checkout_cart_updatepost
+review_product_post
+sendfriend_product_sendmail
+wishlist_index_add
+wishlist_index_update
+wishlist_index_cart
+wishlist_index_send
+catalog_product_compare_add
+                </actions>
+            </formkey>
+        </web>
+    </default>
+</config>

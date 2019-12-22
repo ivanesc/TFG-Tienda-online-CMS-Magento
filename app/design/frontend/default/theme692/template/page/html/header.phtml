@@ -1,0 +1,889 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2012 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+/**
+ * @var Mage_Page_Block_Html_Header $this
+ */
+?>
+<?php $languageCode = Mage::app()->getLocale()->getLocaleCode(); ?>
+<script src="<?php echo Mage::getBaseUrl('js')."calendar/calendar.js" ?>" type="text/javascript"></script>
+ 
+<script src="<?php echo Mage::getBaseUrl('js')."calendar/calendar-setup.js" ?>" type="text/javascript"></script>
+ 
+<link rel="stylesheet" type="text/css" href="<?php echo Mage::getBaseUrl('js') ?>calendar/calendar-win2k-1.css"  />  
+
+<label style="color:#5A5250" for="date_picker_id"><?php echo $this->__('Calendario Tienda') ?> </label>
+<img style="" title="Select Date" id="date_select_trig" alt="" src="<?php echo $this->getSkinUrl("images/calendar.gif");?> "/>
+ 
+<script type="text/javascript">
+// <![CDATA[
+Calendar.setup({
+inputField : 'shipping_pickup_at_store_date',
+ifFormat : '%m-%d-%Y',
+showsTime: false,
+button : 'date_select_trig',
+singleClick : true,
+disableFunc: function(date) {
+//disable previous day in datepicker
+var now= new Date();
+if(date.getFullYear()<now.getFullYear())
+{
+return true;
+}
+if(date.getFullYear()==now.getFullYear())
+{
+if(date.getMonth()<now.getMonth())
+{
+return true;
+}
+}
+if(date.getMonth()==now.getMonth())
+{
+if(date.getDate()<now.getDate())
+{
+return true;
+}
+}
+},
+});
+// ]]>
+</script>
+
+<div class="shadow"></div>
+<div class="swipe-left"></div>
+<div class="swipe">
+    <div class="swipe-menu">
+        <a href="<?php echo $this->getUrl('') ?>" title="<?php echo $this->__('Home') ?>" class="home-link"><?php echo $this->__('Home') ?></a>
+        <?php echo $this->getChildHtml('catalog.topnav2') ?>
+        <?php echo $this->getChildHtml('topLinks') ?>
+        <?php echo $this->getChildHtml('currency_2') ?>
+        <?php echo $this->getChildHtml('store_language_2') ?>
+        <?php echo $this->getChildHtml('footer_links') ?>
+        <?php echo $this->getChildHtml('cms_footer_links') ?>
+        <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('cms_footer_links')->toHtml() ?>   
+        <div class="footer-links-menu"> 
+            <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('footer_links')->toHtml() ?>  
+            <?php echo $this->getLayout()->createBlock('core/template')->setTemplate('page/template/custum_link_header.phtml')->toHtml(); ?>
+        </div>
+    </div>
+</div>
+<div class="top-icon-menu">
+    <div class="swipe-control"><i class="fa fa-align-justify"></i></div>
+    <div class="top-search"><i class="fa fa-search"></i></div>
+    <span class="clear"></span>
+</div>
+
+<div class="header-container">
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12">
+                <div class="header">
+                        
+                        <div class="header-border">
+                            <div class="header-buttons">
+                                <?php echo $this->getChildHtml('store_language') ?>     
+                                
+                            </div> 
+                            
+                            <?php echo ($this->getLayout()->createBlock('cms/block')->setBlockId('header_info')->toHtml()); ?>
+                            
+                            <div class="clear"></div>
+                        </div><br><br>
+
+                        <div class="skip-links"> <span href="#header-account" class="skip-link skip-account"></span></div>
+                        <div id="header-account" class="skip-content"></div>
+                       
+                        <?php if ($this->getIsHomePage()):?>
+                        <h1 class="logo"><strong><?php echo $this->getLogoAlt() ?></strong><a href="<?php echo $this->getUrl('') ?>" title="<?php echo $this->getLogoAlt() ?>" class="logo"><img src="<?php echo $this->getLogoSrc() ?>" alt="<?php echo $this->getLogoAlt() ?>" /></a></h1>
+                        <?php else:?>
+                        <a href="<?php echo $this->getUrl('') ?>" title="<?php echo $this->getLogoAlt() ?>" class="logo"><strong><?php echo $this->getLogoAlt() ?></strong><img src="<?php echo $this->getLogoSrc() ?>" alt="<?php echo $this->getLogoAlt() ?>" /></a>    
+                        <?php endif?>
+                        
+                        <div class="quick-access">
+                                <?php echo $this->getChildHtml('topLinks') ?>
+                        </div>
+                        <br><br><br>
+                        <div class block-cart-header>
+                        <a href="<?php echo Mage::helper('checkout/url')->getCheckoutUrl(); ?>"> <img align="right" src="http://www.agustimestre.com/media/wysiwyg/home.gif" alt="Ver interior carrito"></img></a>
+                        <?php echo $this->getChildHtml('cart_header'); ?>
+
+                        </div><br><br>
+                        
+                        
+                        <div class="f-right">
+                            <br>
+                            <p class="welcome-msg"><?php echo $this->getWelcome() ?> <?php echo $this->getAdditionalHtml() ?></p><br>
+                                   <!-- <div class="skip-links-relative">
+                                <?php // echo $this->getLayout()->createBlock('core/template')->setTemplate('page/template/custum_link_header_2.phtml')->toHtml(); ?>
+                                   </div> -->  
+                            <br><br>
+                            <?php echo $this->getChildHtml('topSearch') ?>
+                            <?php echo ($this->getLayout()->createBlock('cms/block')->setBlockId('addthis')->toHtml()); ?>
+                            
+                        </div>
+                        <div style="float:left">
+                        <?php echo ($this->getLayout()->createBlock('cms/block')->setBlockId('elige_fondo')->toHtml()); ?>
+                        </div>
+                        <div class="clear"></div>
+                </div>
+            </div>
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+
+<?php if ($this->getIsHomePage()):?>
+<?php echo $this->getChildHtml('topMenu') ?>
+
+<?php elseif($languageCode == "en_GB") :?>
+<div class="nav-container-mobile">
+<div class="container">
+<div class="row">
+<div class="col-xs-12">
+<div class="sf-menu-block" style="background: url(http://68.cdn.pagina.mx/css-files/templates/1477/green_bimage.jpg)">
+                    <div id="menu-icon"><span>Categories</span></div>
+                    <ul class="sf-menu-phone">
+                        <li class="level0 nav-1 first level-top parent"><a href="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/manualidades" class="level-top"><span>Crafts</span></a><ul class="level0"><li class="level1 nav-1-1 first"><a href="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/manualidades/abaloriosbisuteria"><span>Beads and jewelry</span></a></li><li class="level1 nav-1-2"><a href="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/manualidades/fieltro"><span>Felt</span></a></li><li class="level1 nav-1-3"><a href="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/manualidades/maderas"><span>Woods</span></a></li><li class="level1 nav-1-4"><a href="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/manualidades/decoupage"><span>Paper Decoupage</span></a></li><li class="level1 nav-1-5"><a href="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/manualidades/plantillas"><span>Templates</span></a></li><li class="level1 nav-1-6 last"><a href="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/manualidades/tejas"><span>Crafts roof tiles</span></a></li></ul><strong></strong></li><li class="level0 nav-2 level-top parent"><a href="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/scrapbooking" class="level-top"><span>Scrapbooking</span></a><ul class="level0"><li class="level1 nav-2-1 first"><a href="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/scrapbooking/adhesivos"><span>Adhesives</span></a></li><li class="level1 nav-2-2"><a href="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/scrapbooking/albumes"><span>Albums, notebooks and frames</span></a></li><li class="level1 nav-2-3"><a href="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/scrapbooking/herramientascrap"><span>Scrapbooking Tools</span></a></li><li class="level1 nav-2-4"><a href="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/scrapbooking/perforadorasfrisadoras"><span>Drills and frisadoras</span></a></li><li class="level1 nav-2-5"><a href="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/scrapbooking/sellos"><span>Stamps</span></a></li><li class="level1 nav-2-6 last"><a href="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/scrapbooking/tamponestintas"><span>Buffers and inks</span></a></li></ul><strong></strong></li><li class="level0 nav-3 level-top parent"><a href="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/gomaevafofuchas" class="level-top"><span>Eva Rubber-Fofuchas</span></a><ul class="level0"><li class="level1 nav-3-1 first"><a href="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/gomaevafofuchas/accesoriosfofuchas"><span>Fofuchas accesories</span></a></li><li class="level1 nav-3-2"><a href="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/gomaevafofuchas/kitfofuchas"><span>Fofuchas Kit</span></a></li><li class="level1 nav-3-3"><a href="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/gomaevafofuchas/planchasfoamy"><span>Eva Rubber Foamy irons</span></a></li><li class="level1 nav-3-4 last"><a href="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/gomaevafofuchas/pinturas"><span>Paints, markers and inks</span></a></li></ul><strong></strong></li><li class="level0 nav-4 level-top"><a href="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/masvendidos" class="level-top"><span>Best sellers</span></a></li><li class="level0 nav-5 level-top"><a href="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/masvistos" class="level-top"><span>Most viewed</span></a></li><li class="level0 nav-6 last level-top"><a href="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/sobrenosotros" class="level-top"><span>About us</span></a></li>                    </ul>
+                </div>
+              </div>
+             </div>
+<div class="clear"></div>
+</div>
+             </div>
+<div class="nav-container">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+	            <!-- <div class="nav" style="width: ;"> -->
+                <div class="nav">
+                    <ul id="nav" class="grid-full"> 
+                                                                                        <li id="nav-home-link" class="level  active">
+                                                                        <a data-translate="[{&quot;shown&quot;:&quot;Inicio&quot;,&quot;translated&quot;:&quot;Inicio&quot;,&quot;original&quot;:&quot;Home&quot;,&quot;location&quot;:&quot;Link label&quot;,&quot;scope&quot;:&quot;Cmsmart_Megamenu&quot;}]" class="" style="background-color:#300023;" href="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/"><span style="color:#ffffff;">Home</span></a>
+                                                                    </li>
+                                                
+                            
+                            <li class="level nav-1 first parent  level-thumbnail">
+<a style="background-color:#300023" href="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/manualidades">
+<img src="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/media/catalog/category/manualidades_thumbnail.jpg" style="float: left;z-index: 1" height="60" width="60">
+<span style="color:#ffffff;">Crafts</span><span class="spanchildren"></span>
+</a>
+<div class="level-top">
+<ul class="level  column6" style="width:930px;">
+
+<ul class=" level menu-content"><div class="static-block-left" style="width:164px; float: left; margin-top: 5px; margin-right: 10px;"><p><img alt="" src="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/media/wysiwyg/arte_y_manualidades.png"></p></div>
+
+<div class="catagory_children" style="width:756px;"><li class="level1 nav-1-1 first item  level-thumbnail" style="width:11.458333333333%;">
+<a style="background-color: border-bottom: 2px solid " class="catagory-level1" href="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/manualidades/abaloriosbisuteria">
+<img src="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/media/catalog/category/Bisuter_a-Artesanal-fimo.jpg" style="float: left;z-index: 1" height="60" width="60">
+<span style="color:;  ">Beads and jewelry</span>
+</a>
+
+<div class="level-top">
+<ul class="level1  column1">
+
+<ul class=" level1">
+
+</ul>
+</ul>
+</div>
+</li><li class="level1 nav-1-2 item  level-thumbnail" style="width:11.458333333333%;">
+<a style="background-color: border-bottom: 2px solid " class="catagory-level1" href="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/manualidades/fieltro">
+<img src="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/media/catalog/category/reyes-magos-con-fieltro-1.jpg" style="float: left;z-index: 1" height="60" width="60">
+<span style="color:;  ">Felt</span>
+</a>
+
+<div class="level-top">
+<ul class="level1  column1">
+
+<ul class=" level1">
+
+</ul>
+</ul>
+</div>
+</li><li class="level1 nav-1-3 item  level-thumbnail" style="width:11.458333333333%;">
+<a style="background-color: border-bottom: 2px solid " class="catagory-level1" href="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/manualidades/maderas">
+<img src="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/media/catalog/category/Camion-de-madera.jpg" style="float: left;z-index: 1" height="60" width="60">
+<span style="color:;  ">Woods</span>
+</a>
+
+<div class="level-top">
+<ul class="level1  column1">
+
+<ul class=" level1">
+
+</ul>
+</ul>
+</div>
+</li><li class="level1 nav-1-4 item  level-thumbnail" style="width:11.458333333333%;">
+<a style="background-color: border-bottom: 2px solid " class="catagory-level1" href="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/manualidades/decoupage">
+<img src="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/media/catalog/category/manualidades-faciles-calabaza-decoupage-halloween-DIY-pumpkin1.png" style="float: left;z-index: 1" height="60" width="60">
+<span style="color:;">Paper Decoupage</span><span class="spanchildren"></span>
+</a>
+
+<div class="level-top">
+<ul class="level1  column1">
+
+<ul class=" level1">
+
+</ul>
+</ul>
+</div>
+</li><li class="level1 nav-1-5 item  level-thumbnail" style="width:11.458333333333%;">
+<a style="background-color: border-bottom: 2px solid " class="catagory-level1" href="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/manualidades/plantillas">
+<img src="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/media/catalog/category/PLANTILLAS_DE_ACOLCHADO.jpg" style="float: left;z-index: 1" height="60" width="60">
+<span style="color:;  ">Templates</span>
+</a>
+
+<div class="level-top">
+<ul class="level1  column1">
+
+<ul class=" level1">
+
+</ul>
+</ul>
+</div>
+</li><li class="level1 nav-1-6 last item  level-thumbnail" style="width:11.458333333333%;">
+<a style="background-color: border-bottom: 2px solid " class="catagory-level1" href="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/manualidades/tejas">
+<img src="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/media/catalog/category/tejas099.jpg" style="float: left;z-index: 1" height="60" width="60">
+<span style="color:;  ">Crafts roof tiles</span>
+</a>
+
+<div class="level-top">
+<ul class="level1  column1">
+
+<ul class=" level1">
+
+</ul>
+</ul>
+</div>
+</li></div>
+</ul><ul class="static-block"><div class="menu-banner">
+<span><img class="f-left" alt="" src="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/skin/frontend/default/theme692/images/media/menu-ban-1.jpg"></span>
+<span><img class="f-left" alt="" src="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/skin/frontend/default/theme692/images/media/menu-ban-2.jpg"></span> 
+<span><img class="f-left" alt="" src="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/skin/frontend/default/theme692/images/media/menu-ban-3.jpg"></span>
+<div>&nbsp;</div>
+</div></ul>
+</ul>
+</div>
+</li><li class="level nav-2 parent  level-thumbnail">
+<a style="background-color:#300023" href="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/scrapbooking">
+<img src="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/media/catalog/category/scrapbooking_thumbnail.jpg" style="float: left;z-index: 1" height="60" width="60">
+<span style="color:#ffffff;">Scrapbooking<span class="cat-label pin-bottom">Nueva seccion -New Section</span></span><span class="spanchildren"></span>
+</a>
+<div class="level-top">
+<ul class="level  column6" style="width:930px;">
+<ul class="static-block"><p><strong style="font-family: Arial, Helvetica, sans-serif; font-size: 24px; line-height: normal; font-weight: bolder; color: #ffffff; border-style: dotted; background-color: #000000;">ONLY REGISTERED USERS!</strong></em></p></ul>
+<ul class=" level">
+
+<div class="catagory_children" style="width:950px;"><li class="level1 nav-2-1 first item  level-thumbnail" style="width:13.508771929825%;">
+<a style="background-color: border-bottom: 2px solid " class="catagory-level1" href="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/scrapbooking/adhesivos">
+<img src="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/media/catalog/category/15077.jpg" style="float: left;z-index: 1" height="60" width="60">
+<span style="color:;  ">Adhesives</span>
+</a>
+
+<div class="level-top">
+<ul class="level1  column1">
+
+<ul class=" level1">
+
+</ul>
+</ul>
+</div>
+</li><li class="level1 nav-2-2 item  level-thumbnail" style="width:13.508771929825%;">
+<a style="background-color: border-bottom: 2px solid " class="catagory-level1" href="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/scrapbooking/albumes">
+<img src="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/media/catalog/category/Scrapbooking_album_cover_normal.jpg" style="float: left;z-index: 1" height="60" width="60">
+<span style="color:;  ">Albums, notebooks and frames</span>
+</a>
+
+<div class="level-top">
+<ul class="level1  column1">
+
+<ul class=" level1">
+
+</ul>
+</ul>
+</div>
+</li><li class="level1 nav-2-3 item  level-thumbnail" style="width:13.508771929825%;">
+<a style="background-color: border-bottom: 2px solid " class="catagory-level1" href="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/scrapbooking/herramientascrap">
+<img src="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/media/catalog/category/maxresdefault.jpg" style="float: left;z-index: 1" height="60" width="60">
+<span style="color:;  ">Scrapbooking Tools</span>
+</a>
+
+<div class="level-top">
+<ul class="level1  column1">
+
+<ul class=" level1">
+
+</ul>
+</ul>
+</div>
+</li><li class="level1 nav-2-4 item  level-thumbnail" style="width:13.508771929825%;">
+<a style="background-color: border-bottom: 2px solid " class="catagory-level1" href="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/scrapbooking/perforadorasfrisadoras">
+<img src="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/media/catalog/category/perforadora-de-figuras-luna_2.jpg" style="float: left;z-index: 1" height="60" width="60">
+<span style="color:;  ">Drills and frisadoras</span>
+</a>
+
+<div class="level-top">
+<ul class="level1  column1">
+
+<ul class=" level1">
+
+</ul>
+</ul>
+</div>
+</li><li class="level1 nav-2-5 item  level-thumbnail" style="width:13.508771929825%;">
+<a style="background-color: border-bottom: 2px solid " class="catagory-level1" href="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/scrapbooking/sellos">
+<img src="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/media/catalog/category/maxresdefault_1_.jpg" style="float: left;z-index: 1" height="60" width="60">
+<span style="color:;  ">Stamps</span>
+</a>
+
+<div class="level-top">
+<ul class="level1  column1">
+
+<ul class=" level1">
+
+</ul>
+</ul>
+</div>
+</li><li class="level1 nav-2-6 last item  level-thumbnail" style="width:13.508771929825%;">
+<a style="background-color: border-bottom: 2px solid " class="catagory-level1" href="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/scrapbooking/tamponestintas">
+<img src="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/media/catalog/category/tintas-recargas-colorbox.jpg" style="float: left;z-index: 1" height="60" width="60">
+<span style="color:;  ">Buffers and inks</span>
+</a>
+
+<div class="level-top">
+<ul class="level1  column1">
+
+<ul class=" level1">
+
+</ul>
+</ul>
+</div>
+</li></div>
+</ul><ul class="static-block"><div style="background:url(https://s-media-cache-ak0.pinimg.com/564x/e1/4a/ca/e14aca7ae8dafd517380fdceeb159ead.jpg)" class="menu-banner">
+<p><img alt="" src="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/media/wysiwyg/scrapbooking_about.jpg" height="291" width="335"></p>
+<div>&nbsp;</div>
+</div></ul>
+</ul>
+</div>
+</li><li class="level nav-3 parent  level-thumbnail">
+<a style="background-color:#300023" href="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/gomaevafofuchas">
+<img src="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/media/catalog/category/fofucha_thumbnail.jpg" style="float: left;z-index: 1" height="60" width="60">
+<span style="color:#ffffff;">Eva Rubber-Fofuchas<span class="cat-label pin-bottom">Destacado</span></span><span class="spanchildren"></span>
+</a>
+<div class="level-top">
+<ul class="level  column4" style="width:930px;">
+
+<ul class=" level">
+
+<div class="catagory_children" style="width:950px;"><li class="level1 nav-3-1 first item  level-thumbnail" style="width:21.842105263158%;">
+<a style="background-color: border-bottom: 2px solid " class="catagory-level1" href="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/gomaevafofuchas/accesoriosfofuchas">
+<img src="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/media/catalog/category/accesorios-fofuchas.jpg" style="float: left;z-index: 1" height="60" width="60">
+<span style="color:;  ">Fofuchas accesories</span>
+</a>
+
+<div class="level-top">
+<ul class="level1  column1">
+
+<ul class=" level1">
+
+</ul>
+</ul>
+</div>
+</li><li class="level1 nav-3-2 item  level-thumbnail" style="width:21.842105263158%;">
+<a style="background-color: border-bottom: 2px solid " class="catagory-level1" href="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/gomaevafofuchas/kitfofuchas">
+<img src="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/media/catalog/category/01.jpg" style="float: left;z-index: 1" height="60" width="60">
+<span style="color:;  ">Fofuchas Kit</span>
+</a>
+
+<div class="level-top">
+<ul class="level1  column1">
+
+<ul class=" level1">
+
+</ul>
+</ul>
+</div>
+</li><li class="level1 nav-3-3 item  level-thumbnail" style="width:21.842105263158%;">
+<a style="background-color: border-bottom: 2px solid " class="catagory-level1" href="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/gomaevafofuchas/planchasfoamy">
+<img src="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/media/catalog/category/foamy_goma_eva_planchas_colores_lisos_1.jpg" style="float: left;z-index: 1" height="60" width="60">
+<span style="color:;  ">Eva Rubber Foamy irons</span>
+</a>
+
+<div class="level-top">
+<ul class="level1  column1">
+
+<ul class=" level1">
+
+</ul>
+</ul>
+</div>
+</li><li class="level1 nav-3-4 last item  level-thumbnail" style="width:21.842105263158%;">
+<a style="background-color: border-bottom: 2px solid " class="catagory-level1" href="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/gomaevafofuchas/pinturas">
+<img src="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/media/catalog/category/material-fofuches-copia.png" style="float: left;z-index: 1" height="60" width="60">
+<span style="color:;  ">Paints, markers and inks</span>
+</a>
+
+<div class="level-top">
+<ul class="level1  column1">
+
+<ul class=" level1">
+
+</ul>
+</ul>
+</div>
+</li></div>
+</ul><ul class="static-block"><div class="menu-content-2">
+	<div class="col_1">
+		<div class="title-menu">Fofuchas accesories</div>
+		<a class="link-img" href="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/gomaevafofuchas/accesoriosfofuchas"><img  src="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/skin/frontend/default/theme692/images/media/menu-ban-6.jpg" /></a>
+		<p>Accessories Fofuchas and dolls. Molds, eyes and other accessories used for our dolls. Foamy auxiliary products. All you need to work the Goma EVA, and complete your fofuchas : adhesives, arms, eyes, eyes and mouths markers, bases and everything you can imagine.</p>
+	</div>
+	<div class="col_1">
+		<div class="title-menu">Fofuchas Kit </div>
+		<a class="link-img" href="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/gomaevafofuchas/kitfofuchas"><img  src="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/skin/frontend/default/theme692/images/media/menu-ban-7.jpg" /></a>
+		<p>Creates Fofuchas images with your kit which includes everything you need for processing. Microperforados patterns, pieces of styrofoam and utensils for it.</p>
+	</div>
+	<div class="col_1">
+		<div class="title-menu">Eva Rubber Foamy irons </div>
+		<a class="link-img"  href="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/gomaevafofuchas/planchasfoamy"><img  src="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/skin/frontend/default/theme692/images/media/menu-ban-8.jpg" /></a>
+		<p>Everything you need to create your fofuchas . Wide range of items: Foamy - Eva Rubber, many forms of porexpan, cutting tools and accessories. Foamy glitter. Various colors, also metallic. Foamy is ideal for any craft work volume and non-toxic material. Here you will find everything you need to make virtually any design Fofucha, the most practical and economical way . There is another store with better quality - price items and tools for creating fofuchas. </p>
+	</div>
+	<div class="col_1">
+		<div class="title-menu">Paints, markers and inks</div>
+		<a class="link-img"  href="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/gomaevafofuchas/pinturas"><img  src="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/skin/frontend/default/theme692/images/media/menu-ban-9.jpg" /></a>
+		<p>Paints, markers and inks for creating your fofuchas and Foamy - Goma EVA. All kinds of colors. All paintings you need for your hobby. Inks for aging. You can also find some unique types of adhesives used for these creations.</p>
+	</div>
+</div></ul>
+</ul>
+</div>
+</li><li class="level nav-4  level-thumbnail">
+<a class="" style="background-color:#300023" href="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/masvendidos">
+<img src="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/media/catalog/category/bestsellers_large.jpg" style="float: left;z-index: 1" height="60" width="60">
+<span style="color:#ffffff;  ">Best sellers<span class="cat-label pin-bottom">Solo usuarios registrados - Only registered users </span></span>
+</a>
+<div class="level-top">
+<ul class="level  column1" style="width:930px;">
+
+<ul class=" level">
+
+</ul>
+</ul>
+</div>
+</li><li class="level nav-5  level-thumbnail">
+<a class="" style="background-color:#300023" href="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/masvistos">
+<img src="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/media/catalog/category/ojo-bello_1.jpg" style="float: left;z-index: 1" height="60" width="60">
+<span style="color:#ffffff;  ">Most viewed</span>
+</a>
+<div class="level-top">
+<ul class="level  column1" style="width:930px;">
+
+<ul class=" level">
+
+</ul>
+</ul>
+</div>
+</li><li class="level nav-6 last  no-level-thumbnail">
+<a class="" style="background-color:#300023" href="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/sobrenosotros">
+<div class="thumbnail"></div>
+<span style="color:#ffffff;  ">About Us</span>
+</a>
+<div class="level-top">
+<ul class="level  column1" style="width:930px;">
+
+<ul class=" level">
+
+</ul>
+</ul>
+</div>
+</li><li></li></ul></div></div></div></div></div>                                                        
+                            
+<div class="clear"></div>
+<?php else: ?>
+<div class="nav-container-mobile">
+<div class="container">
+<div class="row">
+<div class="col-xs-12">
+<div class="sf-menu-block" style="background: url(http://68.cdn.pagina.mx/css-files/templates/1477/green_bimage.jpg)">
+                    <div id="menu-icon"><span>Categorias</span></div>
+                    <ul class="sf-menu-phone">
+                        <li class="level0 nav-1 first level-top parent"><a href="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/manualidades" class="level-top"><span>Manualidades</span></a><ul class="level0"><li class="level1 nav-1-1 first"><a href="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/manualidades/abaloriosbisuteria"><span>Abalorios y bisuteria</span></a></li><li class="level1 nav-1-2"><a href="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/manualidades/fieltro"><span>Fieltro</span></a></li><li class="level1 nav-1-3"><a href="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/manualidades/maderas"><span>Maderas</span></a></li><li class="level1 nav-1-4"><a href="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/manualidades/decoupage"><span>Papel Decoupage</span></a></li><li class="level1 nav-1-5"><a href="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/manualidades/plantillas"><span>Plantillas</span></a></li><li class="level1 nav-1-6 last"><a href="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/manualidades/tejas"><span>Tejas Manualidades</span></a></li></ul><strong></strong></li><li class="level0 nav-2 level-top parent"><a href="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/scrapbooking" class="level-top"><span>Scrapbooking</span></a><ul class="level0"><li class="level1 nav-2-1 first"><a href="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/scrapbooking/adhesivos"><span>Adhesivos</span></a></li><li class="level1 nav-2-2"><a href="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/scrapbooking/albumes"><span>Albumes, cuadernos y marcos</span></a></li><li class="level1 nav-2-3"><a href="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/scrapbooking/herramientascrap"><span>Herramientas Scrapbooking</span></a></li><li class="level1 nav-2-4"><a href="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/scrapbooking/perforadorasfrisadoras"><span>Perforadoras y frisadoras</span></a></li><li class="level1 nav-2-5"><a href="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/scrapbooking/sellos"><span>Sellos</span></a></li><li class="level1 nav-2-6 last"><a href="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/scrapbooking/tamponestintas"><span>Tampones y tintas</span></a></li></ul><strong></strong></li><li class="level0 nav-3 level-top parent"><a href="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/gomaevafofuchas" class="level-top"><span>Goma Eva-Fofuchas</span></a><ul class="level0"><li class="level1 nav-3-1 first"><a href="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/gomaevafofuchas/accesoriosfofuchas"><span>Accesorios Fofuchas</span></a></li><li class="level1 nav-3-2"><a href="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/gomaevafofuchas/kitfofuchas"><span>Kit Fofuchas</span></a></li><li class="level1 nav-3-3"><a href="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/gomaevafofuchas/planchasfoamy"><span>Planchas de Foamy Goma Eva</span></a></li><li class="level1 nav-3-4 last"><a href="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/gomaevafofuchas/pinturas"><span>Pinturas, rotuladores y tintas</span></a></li></ul><strong></strong></li><li class="level0 nav-4 level-top"><a href="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/masvendidos" class="level-top"><span>Mas vendidos</span></a></li><li class="level0 nav-5 level-top"><a href="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/masvistos" class="level-top"><span>Mas vistos</span></a></li><li class="level0 nav-6 last level-top"><a href="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/sobrenosotros" class="level-top"><span>Sobre nosotros</span></a></li>                    </ul>
+                </div></div></div><div class="clear"></div></div></div>
+<div class="nav-container">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+	            <!-- <div class="nav" style="width: ;"> -->
+                <div class="nav">
+                    <ul id="nav" class="grid-full"> 
+                                                                                        <li id="nav-home-link" class="level  active">
+                                                                        <a data-translate="[{&quot;shown&quot;:&quot;Inicio&quot;,&quot;translated&quot;:&quot;Inicio&quot;,&quot;original&quot;:&quot;Home&quot;,&quot;location&quot;:&quot;Link label&quot;,&quot;scope&quot;:&quot;Cmsmart_Megamenu&quot;}]" class="" style="background-color:#300023;" href="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/"><span style="color:#ffffff;">Inicio</span></a>
+                                                                    </li>
+                                                
+                            
+                            <li class="level nav-1 first parent  level-thumbnail">
+<a style="background-color:#300023" href="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/manualidades">
+<img src="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/media/catalog/category/manualidades_thumbnail.jpg" style="float: left;z-index: 1" height="60" width="60">
+<span style="color:#ffffff;">Manualidades</span><span class="spanchildren"></span>
+</a>
+<div class="level-top">
+<ul class="level  column6" style="width:930px;">
+
+<ul class=" level menu-content"><div class="static-block-left" style="width:164px; float: left; margin-top: 5px; margin-right: 10px;"><p><img alt="" src="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/media/wysiwyg/arte_y_manualidades.png"></p></div>
+
+<div class="catagory_children" style="width:756px;"><li class="level1 nav-1-1 first item  level-thumbnail" style="width:11.458333333333%;">
+<a style="background-color: border-bottom: 2px solid " class="catagory-level1" href="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/manualidades/abaloriosbisuteria">
+<img src="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/media/catalog/category/Bisuter_a-Artesanal-fimo.jpg" style="float: left;z-index: 1" height="60" width="60">
+<span style="color:;  ">Abalorios y bisuteria</span>
+</a>
+
+<div class="level-top">
+<ul class="level1  column1">
+
+<ul class=" level1">
+
+</ul>
+</ul>
+</div>
+</li><li class="level1 nav-1-2 item  level-thumbnail" style="width:11.458333333333%;">
+<a style="background-color: border-bottom: 2px solid " class="catagory-level1" href="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/manualidades/fieltro">
+<img src="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/media/catalog/category/reyes-magos-con-fieltro-1.jpg" style="float: left;z-index: 1" height="60" width="60">
+<span style="color:;  ">Fieltro</span>
+</a>
+
+<div class="level-top">
+<ul class="level1  column1">
+
+<ul class=" level1">
+
+</ul>
+</ul>
+</div>
+</li><li class="level1 nav-1-3 item  level-thumbnail" style="width:11.458333333333%;">
+<a style="background-color: border-bottom: 2px solid " class="catagory-level1" href="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/manualidades/maderas">
+<img src="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/media/catalog/category/Camion-de-madera.jpg" style="float: left;z-index: 1" height="60" width="60">
+<span style="color:;  ">Maderas</span>
+</a>
+
+<div class="level-top">
+<ul class="level1  column1">
+
+<ul class=" level1">
+
+</ul>
+</ul>
+</div>
+</li><li class="level1 nav-1-4 item  level-thumbnail" style="width:11.458333333333%;">
+<a style="background-color: border-bottom: 2px solid " class="catagory-level1" href="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/manualidades/decoupage">
+<img src="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/media/catalog/category/manualidades-faciles-calabaza-decoupage-halloween-DIY-pumpkin1.png" style="float: left;z-index: 1" height="60" width="60">
+<span style="color:;">Papel Decoupage</span><span class="spanchildren"></span>
+</a>
+
+<div class="level-top">
+<ul class="level1  column1">
+
+<ul class=" level1">
+
+</ul>
+</ul>
+</div>
+</li><li class="level1 nav-1-5 item  level-thumbnail" style="width:11.458333333333%;">
+<a style="background-color: border-bottom: 2px solid " class="catagory-level1" href="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/manualidades/plantillas">
+<img src="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/media/catalog/category/PLANTILLAS_DE_ACOLCHADO.jpg" style="float: left;z-index: 1" height="60" width="60">
+<span style="color:;  ">Plantillas</span>
+</a>
+
+<div class="level-top">
+<ul class="level1  column1">
+
+<ul class=" level1">
+
+</ul>
+</ul>
+</div>
+</li><li class="level1 nav-1-6 last item  level-thumbnail" style="width:11.458333333333%;">
+<a style="background-color: border-bottom: 2px solid " class="catagory-level1" href="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/manualidades/tejas">
+<img src="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/media/catalog/category/tejas099.jpg" style="float: left;z-index: 1" height="60" width="60">
+<span style="color:;  ">Tejas Manualidades</span>
+</a>
+
+<div class="level-top">
+<ul class="level1  column1">
+
+<ul class=" level1">
+
+</ul>
+</ul>
+</div>
+</li></div>
+</ul><ul class="static-block"><div class="menu-banner">
+<span><img class="f-left" alt="" src="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/skin/frontend/default/theme692/images/media/menu-ban-1.jpg"></span>
+<span><img class="f-left" alt="" src="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/skin/frontend/default/theme692/images/media/menu-ban-2.jpg"></span> 
+<span><img class="f-left" alt="" src="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/skin/frontend/default/theme692/images/media/menu-ban-3.jpg"></span>
+<div>&nbsp;</div>
+</div></ul>
+</ul>
+</div>
+</li><li class="level nav-2 parent  level-thumbnail">
+<a style="background-color:#300023" href="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/scrapbooking">
+<img src="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/media/catalog/category/scrapbooking_thumbnail.jpg" style="float: left;z-index: 1" height="60" width="60">
+<span style="color:#ffffff;">Scrapbooking<span class="cat-label pin-bottom">Nueva seccion -New Section</span></span><span class="spanchildren"></span>
+</a>
+<div class="level-top">
+<ul class="level  column6" style="width:930px;">
+<ul class="static-block"><p><em data-translate="[{&quot;shown&quot;:&quot;&amp;iexcl;SOLO USUARIOS REGISTRADOS!&quot;,&quot;translated&quot;:&quot;&amp;iexcl;SOLO USUARIOS REGISTRADOS!&quot;,&quot;original&quot;:&quot;&amp;iexcl;SOLO USUARIOS REGISTRADOS!&quot;,&quot;location&quot;:&quot;Emphasized text&quot;,&quot;scope&quot;:&quot;Mage_Page&quot;}]"><strong style="font-family: Arial, Helvetica, sans-serif; font-size: 24px; line-height: normal; font-weight: bolder; color: #ffffff; border-style: dotted; background-color: #000000;">¡SOLO USUARIOS REGISTRADOS!</strong></em></p></ul>
+<ul class=" level">
+
+<div class="catagory_children" style="width:950px;"><li class="level1 nav-2-1 first item  level-thumbnail" style="width:13.508771929825%;">
+<a style="background-color: border-bottom: 2px solid " class="catagory-level1" href="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/scrapbooking/adhesivos">
+<img src="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/media/catalog/category/15077.jpg" style="float: left;z-index: 1" height="60" width="60">
+<span style="color:;  ">Adhesivos</span>
+</a>
+
+<div class="level-top">
+<ul class="level1  column1">
+
+<ul class=" level1">
+
+</ul>
+</ul>
+</div>
+</li><li class="level1 nav-2-2 item  level-thumbnail" style="width:13.508771929825%;">
+<a style="background-color: border-bottom: 2px solid " class="catagory-level1" href="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/scrapbooking/albumes">
+<img src="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/media/catalog/category/Scrapbooking_album_cover_normal.jpg" style="float: left;z-index: 1" height="60" width="60">
+<span style="color:;  ">Albumes, cuadernos y marcos</span>
+</a>
+
+<div class="level-top">
+<ul class="level1  column1">
+
+<ul class=" level1">
+
+</ul>
+</ul>
+</div>
+</li><li class="level1 nav-2-3 item  level-thumbnail" style="width:13.508771929825%;">
+<a style="background-color: border-bottom: 2px solid " class="catagory-level1" href="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/scrapbooking/herramientascrap">
+<img src="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/media/catalog/category/maxresdefault.jpg" style="float: left;z-index: 1" height="60" width="60">
+<span style="color:;  ">Herramientas Scrapbooking</span>
+</a>
+
+<div class="level-top">
+<ul class="level1  column1">
+
+<ul class=" level1">
+
+</ul>
+</ul>
+</div>
+</li><li class="level1 nav-2-4 item  level-thumbnail" style="width:13.508771929825%;">
+<a style="background-color: border-bottom: 2px solid " class="catagory-level1" href="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/scrapbooking/perforadorasfrisadoras">
+<img src="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/media/catalog/category/perforadora-de-figuras-luna_2.jpg" style="float: left;z-index: 1" height="60" width="60">
+<span style="color:;  ">Perforadoras y frisadoras</span>
+</a>
+
+<div class="level-top">
+<ul class="level1  column1">
+
+<ul class=" level1">
+
+</ul>
+</ul>
+</div>
+</li><li class="level1 nav-2-5 item  level-thumbnail" style="width:13.508771929825%;">
+<a style="background-color: border-bottom: 2px solid " class="catagory-level1" href="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/scrapbooking/sellos">
+<img src="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/media/catalog/category/maxresdefault_1_.jpg" style="float: left;z-index: 1" height="60" width="60">
+<span style="color:;  ">Sellos</span>
+</a>
+
+<div class="level-top">
+<ul class="level1  column1">
+
+<ul class=" level1">
+
+</ul>
+</ul>
+</div>
+</li><li class="level1 nav-2-6 last item  level-thumbnail" style="width:13.508771929825%;">
+<a style="background-color: border-bottom: 2px solid " class="catagory-level1" href="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/scrapbooking/tamponestintas">
+<img src="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/media/catalog/category/tintas-recargas-colorbox.jpg" style="float: left;z-index: 1" height="60" width="60">
+<span style="color:;  ">Tampones y tintas</span>
+</a>
+
+<div class="level-top">
+<ul class="level1  column1">
+
+<ul class=" level1">
+
+</ul>
+</ul>
+</div>
+</li></div>
+</ul><ul class="static-block"><div style="background:url(https://s-media-cache-ak0.pinimg.com/564x/e1/4a/ca/e14aca7ae8dafd517380fdceeb159ead.jpg)" class="menu-banner">
+<p><img alt="" src="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/media/wysiwyg/scrapbooking_about.jpg" height="291" width="335"></p>
+<div>&nbsp;</div>
+</div></ul>
+</ul>
+</div>
+</li><li class="level nav-3 parent  level-thumbnail">
+<a style="background-color:#300023" href="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/gomaevafofuchas">
+<img src="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/media/catalog/category/fofucha_thumbnail.jpg" style="float: left;z-index: 1" height="60" width="60">
+<span style="color:#ffffff;">Goma Eva-Fofuchas<span class="cat-label pin-bottom">Destacado</span></span><span class="spanchildren"></span>
+</a>
+<div class="level-top">
+<ul class="level  column4" style="width:930px;">
+
+<ul class=" level">
+
+<div class="catagory_children" style="width:950px;"><li class="level1 nav-3-1 first item  level-thumbnail" style="width:21.842105263158%;">
+<a style="background-color: border-bottom: 2px solid " class="catagory-level1" href="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/gomaevafofuchas/accesoriosfofuchas">
+<img src="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/media/catalog/category/accesorios-fofuchas.jpg" style="float: left;z-index: 1" height="60" width="60">
+<span style="color:;  ">Accesorios Fofuchas</span>
+</a>
+
+<div class="level-top">
+<ul class="level1  column1">
+
+<ul class=" level1">
+
+</ul>
+</ul>
+</div>
+</li><li class="level1 nav-3-2 item  level-thumbnail" style="width:21.842105263158%;">
+<a style="background-color: border-bottom: 2px solid " class="catagory-level1" href="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/gomaevafofuchas/kitfofuchas">
+<img src="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/media/catalog/category/01.jpg" style="float: left;z-index: 1" height="60" width="60">
+<span style="color:;  ">Kit Fofuchas</span>
+</a>
+
+<div class="level-top">
+<ul class="level1  column1">
+
+<ul class=" level1">
+
+</ul>
+</ul>
+</div>
+</li><li class="level1 nav-3-3 item  level-thumbnail" style="width:21.842105263158%;">
+<a style="background-color: border-bottom: 2px solid " class="catagory-level1" href="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/gomaevafofuchas/planchasfoamy">
+<img src="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/media/catalog/category/foamy_goma_eva_planchas_colores_lisos_1.jpg" style="float: left;z-index: 1" height="60" width="60">
+<span style="color:;  ">Planchas de Foamy Goma Eva</span>
+</a>
+
+<div class="level-top">
+<ul class="level1  column1">
+
+<ul class=" level1">
+
+</ul>
+</ul>
+</div>
+</li><li class="level1 nav-3-4 last item  level-thumbnail" style="width:21.842105263158%;">
+<a style="background-color: border-bottom: 2px solid " class="catagory-level1" href="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/gomaevafofuchas/pinturas">
+<img src="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/media/catalog/category/material-fofuches-copia.png" style="float: left;z-index: 1" height="60" width="60">
+<span style="color:;  ">Pinturas, rotuladores y tintas</span>
+</a>
+
+<div class="level-top">
+<ul class="level1  column1">
+
+<ul class=" level1">
+
+</ul>
+</ul>
+</div>
+</li></div>
+</ul><ul class="static-block"><div class="menu-content-2">
+	<div class="col_1">
+		<div class="title-menu">Accesorios Fofuchas</div>
+		<a class="link-img" href="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/gomaevafofuchas/accesoriosfofuchas"><img  src="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/skin/frontend/default/theme692/images/media/menu-ban-6.jpg" /></a>
+		<p>Accesorios para Fofuchas y muñecas. Moldes, ojos y otros complementos que se utilizan para hacer nuestras muñecas. Productos auxiliares para el Foamy. Todo lo que necesitas para trabajar la Goma EVA, y completar tus fofuchas: adhesivos, brazos, ojos, marcadores de ojos y bocas, bases y todo lo que imagines.</p>
+	</div>
+	<div class="col_1">
+		<div class="title-menu">Kit Fofuchas</div>
+		<a class="link-img" href="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/gomaevafofuchas/kitfofuchas"><img  src="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/skin/frontend/default/theme692/images/media/menu-ban-7.jpg" /></a>
+		<p>Crea las fofuchas de las imagenes con su Kit. El cual incluye todo lo que necesitas para su elaboracion: patrones microperforados, piezas de porexpan y los utensilios para ello.</p>
+	</div>
+	<div class="col_1">
+		<div class="title-menu">Planchas de Foamy Goma Eva </div>
+		<a class="link-img"  href="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/gomaevafofuchas/planchasfoamy"><img  src="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/skin/frontend/default/theme692/images/media/menu-ban-8.jpg" /></a>
+		<p>Todo lo necesario para crear tus fofuchas. Amplia oferta de articulos: Foamy - Goma EVA, multitud de formas de porexpan, herramientas de corte y accesorios. Foamy con brillantina. Varios colores, tambien metalizada. Foamy es un material no toxico ideal para cualquier trabajo de manualidades y con volumen. Aqui encontraras todo lo que necesitas para hacer practicamente cualquier diseño de fofucha, de la forma mas practica y mas economica. No existe otra tienda con mejor calidad - precio en articulos y herramientas para la creacion de fofuchas. </p>
+	</div>
+	<div class="col_1">
+		<div class="title-menu">Pinturas, Rotuladores y Tintas</div>
+		<a class="link-img"  href="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/gomaevafofuchas/pinturas"><img  src="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/skin/frontend/default/theme692/images/media/menu-ban-9.jpg" /></a>
+		<p>Pinturas, rotuladores y tintas para la creacion de tus fofuchas y para Foamy - Goma EVA. Todo tipo de colores. Todas las pinturas que necesitas para tu aficion. Tintas para envejecer. Ademas puedes encontrar algunos tipos de pegamentos muy usados para estas creaciones.</p>
+	</div>
+</div></ul>
+</ul>
+</div>
+</li><li class="level nav-4  level-thumbnail">
+<a class="" style="background-color:#300023" href="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/masvendidos">
+<img src="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/media/catalog/category/bestsellers_large.jpg" style="float: left;z-index: 1" height="60" width="60">
+<span style="color:#ffffff;  ">Mas vendidos<span class="cat-label pin-bottom">Solo usuarios registrados - Only registered users </span></span>
+</a>
+<div class="level-top">
+<ul class="level  column1" style="width:930px;">
+
+<ul class=" level">
+
+</ul>
+</ul>
+</div>
+</li><li class="level nav-5  level-thumbnail">
+<a class="" style="background-color:#300023" href="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/masvistos">
+<img src="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/media/catalog/category/ojo-bello_1.jpg" style="float: left;z-index: 1" height="60" width="60">
+<span style="color:#ffffff;  ">Mas vistos</span>
+</a>
+<div class="level-top">
+<ul class="level  column1" style="width:930px;">
+
+<ul class=" level">
+
+</ul>
+</ul>
+</div>
+</li><li class="level nav-6 last  no-level-thumbnail">
+<a class="" style="background-color:#300023" href="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/sobrenosotros">
+<div class="thumbnail"></div>
+<span style="color:#ffffff;  ">Sobre nosotros</span>
+</a>
+<div class="level-top">
+<ul class="level  column1" style="width:930px;">
+
+<ul class=" level">
+
+</ul>
+</ul>
+</div>
+</li><li></li></ul></div></div></div></div></div>                                                        
+                            
+<div class="clear"></div>
+
+<?php endif?>
+
+<?php echo $this->getChildHtml('topContainer'); ?>
+<?php if(Mage::getSingleton('cms/page')->getIdentifier() == 'home'  && Mage::app()->getFrontController()->getRequest()->getRouteName() == 'cms' ) :  ?>
+     <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('slider_1')->toHtml() ?>  
+<?php endif;  ?>

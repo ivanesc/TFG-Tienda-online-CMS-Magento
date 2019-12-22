@@ -1,0 +1,400 @@
+<?php
+/**
+ * package : Netsol Offline Order Track
+ * 
+ * **/
+$helper = $this->helper('offlineordertrack');
+$fieldmultiselect = Mage::getStoreConfig('netsolconfig/netsol_group/netsol_specific_field');
+$fieldmultiselect = explode(",",$fieldmultiselect);
+?>
+<div id="messages_product_view"><?php echo $this->getMessagesBlock()->toHtml() ?></div>
+<?php if(Mage::Helper('offlineordertrack')->getIsEnabled()): ////if my module is enabled?>
+<div id="track-order">
+	<div class="page-title">
+		<h1><?php echo $this->__('Track Your Order'); ?></h1>
+	</div>
+	<div class="content-trackorder">
+		<form id="track-order-form" name="trackorderform" method="GET" action="<?php echo $this->getFormUrl(); ?>">
+			<div>
+				<div class="field">
+					<label class="required" for="order:number">Order Number</label>
+					<div class="input-box">
+						<input type="text" class="input-text required-entry"  id="order:number" name="order_number" title="Order Number">
+					</div>
+				</div>
+				<div class="field" style="display:<?php echo (in_array(1,$fieldmultiselect)) ? 'block' : 'none';?>">
+					<label class="required" for="order:email">Email Address</label>
+					<div class="input-box">
+						<input type="text" style="display:<?php echo (in_array(1,$fieldmultiselect)) ? 'block' : 'none';?>" class="input-text validate-email required-entry " id="order:email" name="order_email" title="Email Address">
+					</div>
+				</div>
+				<div class="field" style="display:<?php echo (in_array(2,$fieldmultiselect)) ? 'block' : 'none';?>">
+					<label class="required" for="order:zipcode">Zipcode</label>
+					<div class="input-box">
+						<input type="text"style="display:<?php echo (in_array(2,$fieldmultiselect)) ? 'block' : 'none';?>"  class="input-text validate-zip-international required-entry"  id="order:zipcode" name="order_zipcode" title="Zipcode">
+					</div>
+				</div>
+				<div class="field" style="display:<?php echo (in_array(3,$fieldmultiselect)) ? 'block' : 'none';?>">
+					<label class="required" for="order:phonenumber">Phone Number</label>
+					<div class="input-box">
+						<input type="text" style="display:<?php echo (in_array(3,$fieldmultiselect)) ? 'block' : 'none';?>" class="input-text required-entry"  id="order:phonenumber" name="order_phonenumber" title="Phone Number">
+					</div>
+				</div>
+				
+			</div>
+			<button class="button track-order" id="track-order-button" title="Track Order" type="submit"><span><span>Track order</span></span></button>
+			<div id="div-loading" class="divLoading" style="display: none;">
+			<span class="loadingAjax">Loading</span>
+			</div>
+		</form>
+		
+		<form id="track-order-forgotorder" name="trackorderforgotform" method="POST" action="<?php echo $this->getForgotorderurl(); ?>" style="display:none;">
+			<div class="field">
+				<label class="required" for="order:email">Email Address</label>
+				<div class="input-box">
+					<input type="text" class="input-text validate-email required-entry"  id="order_emailid" name="order_email" title="Email Address">
+				</div>
+			</div>
+			<button class="button forgotOrderNumber" id="track-order-forgot-button" title="Forgot Order Number" type="submit"><span><span>Submit</span></span></button>
+		</form>
+	</div>
+	<div id="error_status"></div>
+	<div class="field">
+		<label for="order:forgotordernumber">Forgot Your Order Number</label>
+		<div class="input-box">
+			<input type="checkbox"  id="order_forgotordernumber" name="order_forgotordernumber" onchange="valueChanged()"/>
+		</div>
+	</div>
+</div>
+
+<div id="order-result" class="orderResult" style="display: none;">
+	<div class="rsNo"><span class="noText">Order #</span><span id="no-value" class="noNumber"></span></div>
+	<div class="rsStatus1">
+		 <ul>
+				<li id="status1-pending">Pending</li>
+				<li id="status1-processing">Processing</li>
+				<li id="status1-completed">Complete</li>
+				<li id="status1-cancel">Canceled</li>
+				<li id="status1-closed">Closed</li>
+		 </ul>
+	</div>
+	<div class="rsStatus2"><span class="status2Text">Order status: </span><span id="status2-value" class="status2Value"></span></div>
+	<div id="rs-carrier" class="rsCarrier" style="display: none;"><span class="carrierText">Carrier: </span><span id="carrier-value" class="carrierValue"></span></div>
+	<div class="rsBilled"><span class="billedText">Billed on: </span><span id="billed-value" class="billedValue"></span></div>
+	<div id="rs-shipped" class="rsShipped" style="display: none;"><span class="shippedText">Shipped on: </span><span id="shipped-value" class="shippedValue"></span></div>
+	<div class="rsOrder">
+		<div class="orderDetail">
+			<div class="detailTitle">Order Detail</div>
+			<div class="detailContent">
+				<table class="data-table">
+					<colgroup>
+						<col width="1">
+						<col width="1">
+						<col width="1">
+						<col width="1">
+						<col width="1">
+						<col width="1">
+					</colgroup>
+					<thead id="orderdetail-header"></thead>
+					<tbody id="orderdetail-html"></tbody>
+				</table>
+				<div class="detailSummary">
+					<table>
+						<tbody><tr>
+							<td class="s-text">Subtotal</td>
+							<td id="s-subtotal"></td>
+						</tr>
+						<tr>
+							<td class="s-text">Shipping</td>
+							<td id="s-shipping"></td>
+						</tr>
+						<tr>
+							<td class="s-text">Tax</td>
+							<td id="s-tax"></td>
+						</tr>
+						<tr>
+							<td class="s-text">Discount</td>
+							<td id="s-tax-discount"></td>
+						</tr>
+						<tr>
+							<td class="s-text"><strong>Grand Total</strong></td>
+							<td class="sTotal" id="s-total"></td>
+						</tr>
+						<tr>
+							<td class="sPayment" id="s-payment" colspan="2"></td>
+						</tr>
+					</tbody></table>
+				</div>
+				<div class="order-info-address">
+					<!--<div class="order-info-box">
+						<div>
+							<h2>Gift Message</h2>
+							<div id="gift-html"><span></span></div>
+						</div>
+					</div>-->
+					<div class="order-info-box">
+						<div class="col-1">
+							<div class="box">
+								<div class="box-title">
+									<h2>Billing Information</h2>
+								</div>
+								<div class="box-content">
+									<address id="billing-info"></address>
+								</div>
+							</div>
+						</div>
+					</div>	
+					<div class="order-info-box">
+						<div class="col-1">
+							<div class="box">
+								<div class="box-title">
+									<h2>Shipping Information</h2>
+								</div>
+								<div class="box-content">
+									<address id="shipping-info"></address>
+								</div>
+							</div>
+						</div>
+					</div> 	
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<?php $ajaxEnabled = Mage::getStoreConfig('netsolconfig/netsol_group/netsol_ajax_enable');?>
+<script type="text/javascript">
+	var ajax = "<?php echo $ajaxEnabled; ?>";
+	var baseurl = "<?php echo Mage::getBaseUrl() ?>";
+</script>
+<script type="text/javascript" src="<?php echo $this->getSkinUrl('js/ordertrack/ordertrack.js'); ?>"></script>
+<script type="text/javascript">
+//<![CDATA[
+var orderForm = new VarienForm('track-order-form', true);
+var orderforgotForm = new VarienForm('track-order-forgotorder', true);
+//]]>
+
+if ( typeof jQuery == 'undefined')
+{
+  var script=document.createElement('script');
+  script.onload = function() {
+	console.log("Script loaded and ready");
+	jQuery.noConflict();
+	  
+	jQuery("#track-order-form").submit(function()
+	{ 
+		jQuery('#div-loading').show();
+		jQuery('#order-result-false').hide('slow');
+		//jQuery('#order-result').hide('slow');
+		//jQuery('#rs-carrier').show();
+		jQuery('#rs-shipped').show();
+		//jQuery('#rs-traking').show();
+		var ajax = '<?php echo $ajaxEnabled; ?>';
+		var url = '<?php echo Mage::getBaseUrl(). "offlineordertrack/tracking/ajax/"; ?>';
+		var data = jQuery('#track-order-form').serialize();
+		data += '&isAjax=1';
+		if(ajax == 0)
+		{
+			 jQuery('#div-loading').hide();
+			 var orderstatus = '<?php echo $this->status; ?>';
+			 if (this.validator.validate()) {
+				document.trackorderform.submit();
+				if (orderstatus === 'canceled') {
+						jQuery('#status2-value').text('Canceled');
+					} else if (orderstatus === 'closed') {
+						jQuery('#status2-value').text('Closed');
+					} else if (orderstatus === 'complete') {
+						jQuery('#status2-value').text('Complete');
+					} else if (orderstatus === 'fraud') {
+						jQuery('#status2-value').text('Suspected Fraud');
+					} else if (orderstatus === 'holded') {
+						jQuery('#status2-value').text('On Hold');
+					} else if (orderstatus === 'payment_review') {
+						jQuery('#status2-value').text('Payment Review');
+					} else if (orderstatus === 'pending') {
+						jQuery('#status2-value').text('Pending');
+					} else if (orderstatus === 'pending_payment') {
+						jQuery('#status2-value').text('Pending Payment');
+					} else if (orderstatus === 'pending_paypal') {
+						jQuery('#status2-value').text('Pending PayPal');
+					} else {
+						jQuery('#status2-value').text('Processing');
+				}
+				if (orderstatus === 'pending' || orderstatus === 'pending_payment' || orderstatus === 'pending_paypal' || orderstatus === 'holded') {
+						removeActiveClass();
+					jQuery('#status1-pending').addClass('active');
+				} else if (orderstatus === 'processing' || orderstatus === 'payment_review' || orderstatus === 'fraud') {
+						removeActiveClass();
+					jQuery('#status1-processing').addClass('active');
+				} else if (orderstatus === 'complete') {
+						removeActiveClass();
+					jQuery('#status1-completed').addClass('active');
+				} else if (orderstatus === 'canceled') {
+						removeActiveClass();
+					jQuery('#status1-cancel').addClass('active');
+				} else if (orderstatus === 'closed') {
+						removeActiveClass();
+					jQuery('#status1-closed').addClass('active');
+				}
+			 }
+		}else{
+			jQuery.ajax({
+				url: url,
+				type: "POST",
+				data: data,
+				dataType: 'json',
+				success: function(data)
+				{ 
+					jQuery('#div-loading').hide();
+					if (data.order_number !== '') {
+						if(data.error_status){
+							jQuery('#error_status').html(data.error_status);
+							jQuery('#error_status').show();
+							jQuery('#order-result').hide();
+						}else{
+							jQuery('#order-result').show('slow');
+							jQuery('#error_status').hide();
+						}
+						jQuery('#no-value').text(data.order_number);
+						jQuery('#track-order-number').text(data.order_number);
+						jQuery('#billed-value').text(data.billed_on);
+						jQuery('#status2-value').text(data.status);
+						jQuery('#s-subtotal').html(data.subtotal);
+						jQuery('#s-shipping').html(data.shipping);
+						jQuery('#s-tax').html(data.tax);
+						jQuery('#s-tax-discount').html(data.discount);
+						jQuery('#s-total').html(data.grandtotal);
+						jQuery('#s-payment').text('(' + data.payment + ')');
+						jQuery('#gift-html').html(data.gifthtml);
+						jQuery('#billing-info').html(data.billing_info);
+						jQuery('#shipping-info').html(data.shipping_info);
+						jQuery('#orderdetail-header').html(data.orderdetail_header);
+						jQuery('#orderdetail-html').html(data.orderdetail_html);
+						
+						
+						if (data.status === 'canceled') {
+							jQuery('#status2-value').text('Canceled');
+						} else if (data.status === 'closed') {
+							jQuery('#status2-value').text('Closed');
+						} else if (data.status === 'complete') {
+							jQuery('#status2-value').text('Complete');
+						} else if (data.status === 'fraud') {
+							jQuery('#status2-value').text('Suspected Fraud');
+						} else if (data.status === 'holded') {
+							jQuery('#status2-value').text('On Hold');
+						} else if (data.status === 'payment_review') {
+							jQuery('#status2-value').text('Payment Review');
+						} else if (data.status === 'pending') {
+							jQuery('#status2-value').text('Pending');
+						} else if (data.status === 'pending_payment') {
+							jQuery('#status2-value').text('Pending Payment');
+						} else if (data.status === 'pending_paypal') {
+							jQuery('#status2-value').text('Pending PayPal');
+						} else {
+							jQuery('#status2-value').text('Processing');
+						}
+						jQuery('#number-after').val(data.order_number);
+						jQuery('#email-after').val(data.order_email);
+						
+						var carrier_string = '';
+						if(data.carriers)
+						{
+							for (var i = 0; i < data.carriers.length; i++)
+							{
+								if (data.carriers.length - i === 1) {
+									carrier_string += data.carriers[i];
+								} else {
+									carrier_string += data.carriers[i] + ' ';
+								}
+							}
+						}
+						if(data.shipped_dates){
+							jQuery('#shipped-value').text(data.shipped_dates);
+						}else{
+							jQuery('#rs-shipped').hide();
+						}
+						jQuery('#carrier-value').text(carrier_string);
+						if (data.shipped_dates === '') {
+							jQuery('#rs-carrier').hide();
+							jQuery('#rs-shipped').hide();
+							jQuery('#rs-traking').hide();
+						}
+						
+						if (data.status === 'pending' || data.status === 'pending_payment' || data.status === 'pending_paypal' || data.status === 'holded') {
+									removeActiveClass();
+								jQuery('#status1-pending').addClass('active');
+							} else if (data.status === 'processing' || data.status === 'payment_review' || data.status === 'fraud') {
+									removeActiveClass();
+								jQuery('#status1-processing').addClass('active');
+							} else if (data.status === 'complete') {
+									removeActiveClass();
+								jQuery('#status1-completed').addClass('active');
+							} else if (data.status === 'canceled') {
+									removeActiveClass();
+								jQuery('#status1-cancel').addClass('active');
+							} else if (data.status === 'closed') {
+									removeActiveClass();
+								jQuery('#status1-closed').addClass('active');
+							}
+					}else {
+						jQuery('#order-result-false').show('slow');
+						jQuery('#order-result-false').text('Order Number or Email Adress invaild!');
+					}
+				},
+				error: function(error)
+				{
+					console.log(error.status);
+				}
+			});
+		} 
+		return false;
+	});
+	
+	 /****
+		jQuery ajax for retrieving all order number for specfic email 
+		address and sending to customer email***/
+
+	jQuery("#track-order-forgotorder").submit(function(){
+		var url = jQuery("#track-order-forgotorder").attr('action');
+		var data = jQuery('#track-order-forgotorder').serialize();
+		//data += '&isAjax=1';
+		
+		jQuery.ajax({
+			url: url,
+			type: "POST",
+			data: data,
+			dataType: 'json',
+			success:function(data){
+				console.log('succes');
+				if(data.error_status){
+					jQuery('#error_status').html(data.error_status);
+					jQuery('#error_status').show();
+					//jQuery('#order-result').hide();
+				}else{
+					//jQuery('#order-result').show('slow');
+					jQuery('#error_status').hide();
+				}
+				
+			},
+			statusCode: {
+				404: function() { alert('Could not contact server.');
+				},
+				500: function() { alert('A server-side error has occurred.. 1');
+				}
+			},
+			error: function(error) { 
+				console.log(error);
+				return false;
+			},
+		});
+	
+		return false;
+	});
+  };
+  script.type='text/javascript';
+  script.src='<?php echo $this->getSkinUrl('js/ordertrack/jquery-1.10.2.min.js');?>';
+  document.getElementsByTagName('head')[0].appendChild(script);
+}
+
+
+</script>
+<?php endif; ?>

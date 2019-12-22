@@ -1,0 +1,101 @@
+<?xml version="1.0"?>
+<config>
+	<modules>
+		<Netsolutions_Offlineordertrack>
+			<version>1.1.7</version>
+		</Netsolutions_Offlineordertrack>
+	</modules>
+	<global>
+		<models>
+			<offlineordertrack>
+				<class>Netsolutions_Offlineordertrack_Model</class>
+				 <resourceModel>offlineordertrack_mysql4</resourceModel>
+			</offlineordertrack>
+			<offlineordertrack_mysql4>
+                <class>Netsolutions_Offlineordertrack_Model_Mysql4</class>
+                <entities>
+                    <ordertrack>
+                        <table>ordertrack</table>
+                    </ordertrack>
+                </entities>
+            </offlineordertrack_mysql4>
+		</models>
+		 <resources>
+			<ot_setup>
+				<setup>
+					<module>Netsolutions_Offlineordertrack</module>
+				</setup>
+				<connection>
+					<use>core_setup</use>
+				</connection>
+			</ot_setup>
+			<ot_write>
+				<connection>
+					<use>core_write</use>
+				</connection>
+			</ot_write>
+			<ot_read>
+				<connection>
+					<use>core_read</use>
+				</connection>
+			</ot_read>
+		</resources>
+		<blocks>
+			<offlineordertrack>
+				<class>Netsolutions_Offlineordertrack_Block</class>
+			</offlineordertrack>
+		</blocks>
+		<helpers>
+			<offlineordertrack>
+				<class>Netsolutions_Offlineordertrack_Helper</class>
+			</offlineordertrack>
+		</helpers>
+		<template>
+            <email>
+				<netsolconfig_netsol_group_custom_template translate="label" module="offlineordertrack">
+					<label>Forgot Order Number Notification</label>
+					<file>forgotordernumbermail.html</file>
+					<type>html</type>
+				</netsolconfig_netsol_group_custom_template>
+            </email>
+        </template>
+	</global>
+	<frontend>
+		<routers>
+			<offlineordertrack>
+				<use>standard</use>
+				<args>
+					<module>Netsolutions_Offlineordertrack</module>
+					<frontName>offlineordertrack</frontName>
+				</args>
+			</offlineordertrack>
+		</routers>
+		<layout>
+			<updates>
+				<offlineordertrack>
+					<file>offlineordertrack.xml</file>
+				</offlineordertrack>
+			</updates>
+		</layout>
+	</frontend>
+	<default>
+		<netsolconfig>
+			<netsol_status_group>
+				<netsol_pending>Pending</netsol_pending>
+				<netsol_pending_payment>Pending Payment</netsol_pending_payment>
+				<netsol_pending_paypal>Pending PayPal</netsol_pending_paypal>
+				<netsol_processing>Processing</netsol_processing>
+				<netsol_payment_review>Payment Review</netsol_payment_review>
+				<netsol_on_hold>On Hold</netsol_on_hold>
+				<netsol_closed>Closed</netsol_closed>
+				<netsol_complete>Complete</netsol_complete>
+				<netsol_suspected_fraud>Suspected Fraud</netsol_suspected_fraud>
+				<netsol_canceled>Canceled</netsol_canceled>
+			</netsol_status_group>
+			<netsol_group>
+				<custom_identity>general</custom_identity>
+                <custom_template>netsolconfig_netsol_group_custom_template</custom_template>
+			</netsol_group>
+		</netsolconfig>
+	</default>
+</config>

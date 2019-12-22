@@ -1,0 +1,47 @@
+<div class="clear"></div>
+        <script src="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/skin/frontend/default/theme692/js/camera.js"> </script>
+        <script>
+        jQuery(function(){
+            jQuery('#camera_wrap').camera({
+                alignmen: 'topCenter',
+                height: '31.21%',
+                minHeight: '100px',
+                loader : false,
+                navigation: true,
+                fx: 'simpleFade',
+                navigationHover:false,       
+                thumbnails: false,
+                playPause: false,
+                pagination:false,
+            });
+        });
+        </script>
+
+<div class="fluid_container_wrap">
+    <div class="fluid_container">
+        <div class="camera_wrap camera_orange_skin" id="camera_wrap">
+            <div data-src="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/skin/frontend/default/theme692/images/camera/slides/slide1.jpg">
+                <div class="camera_caption fadeFromLeft">
+                    <div class="lof_camera_title">MEN'S &amp <br /> WOMEN'S</div>
+                    <div class="lof_camera_title1">New Fall Season 2015</div>
+                    <a class="camera-link" href="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/women-8">View Collection</a>
+                </div>
+            </div>
+            <div data-src="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/skin/frontend/default/theme692/images/camera/slides/slide2.jpg">
+              <div class="camera_caption fadeFromLeft">
+                    <div class="lof_camera_title">BUY <br />2 ITEMS</div>
+                    <div class="lof_camera_title1">Get one for free</div>
+                    <a class="camera-link" href="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/accessories">View Collection</a>
+                </div>
+            </div>
+            <div data-src="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/skin/frontend/default/theme692/images/camera/slides/slide3.jpg">
+                <div class="camera_caption fadeFromLeft">
+                    <div class="lof_camera_title lof_white">Get ready <br /> for summer!</div>
+                    <div class="lof_camera_title1">Save in style</div>
+                    <a class="camera-link" href="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/women-8">View Collection</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="clear"></div>

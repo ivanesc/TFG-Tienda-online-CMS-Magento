@@ -1,0 +1,199 @@
+<?xml version="1.0"?>
+<config>
+	<tabs>
+		 <netsol_tab module="offlineordertrack" translate="label">
+            <label>Order Track Config</label>							
+            <sort_order>100</sort_order>
+        </netsol_tab>
+	</tabs>
+	<sections>
+		<netsolconfig module="offlineordertrack" translate="label">
+			<label>Order Track Configuration</label>
+			<sort_order>200</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <tab>netsol_tab</tab>
+            <groups>
+                <netsol_group translate="label">
+                    <label>Order Track Config</label>
+                    <!--<comment>This is example of custom configuration.</comment>-->
+                    <sort_order>100</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+						<netsol_enable translate="label comment">
+							<label>Enable</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>0</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>Enable/disable Ordertrack on frontend.</comment>
+						</netsol_enable>
+						<netsol_ajax_enable translate="label comment">
+							<label>Ajax Enable</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>1</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>Set to Yes if you want ajax loading .</comment>
+						</netsol_ajax_enable>
+						<netsol_specific_field>
+							<label>Field To be display at frontend</label>
+							<frontend_type>multiselect</frontend_type>
+							<source_model>offlineordertrack/system_config_source_view</source_model>
+							<sort_order>2</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>Field to display at frontend</comment>
+							<validate>validate-select</validate>
+						</netsol_specific_field>
+						<!--<netsol_email translate="label comment">
+							<label>Email Address</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>2</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>Field to display at frontend</comment>
+						</netsol_email>
+						<netsol_zipcode translate="label comment">
+							<label>Zipcode</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>3</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>Field to display at frontend</comment>
+						</netsol_zipcode>
+						<netsol_phonenumber translate="label comment">
+							<label>Phone Number</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>4</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>Field to display at frontend</comment>
+						</netsol_phonenumber>-->
+						<custom_template translate="label">
+                            <label>Custom Email</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_email_template</source_model>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </custom_template>
+                        <custom_identity translate="label">
+                            <label>Email Sender</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_email_identity</source_model>
+                            <sort_order>6</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </custom_identity>
+					</fields>
+                </netsol_group>
+               <!-- <netsol_status_group translate="label">
+                    <label>Status Titles</label>
+                    <sort_order>110</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+						<netsol_pending translate="label">
+							<label>Pending</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>0</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</netsol_pending>
+						<netsol_pending_payment translate="label">
+							<label>Pending Payment</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>1</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</netsol_pending_payment>
+						<netsol_pending_paypal translate="label">
+							<label>Pending PayPal</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>2</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</netsol_pending_paypal>
+						<netsol_processing translate="label">
+							<label>Processing</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>3</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</netsol_processing>
+						<netsol_payment_review translate="label">
+							<label>Payment Review</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>4</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</netsol_payment_review>
+						<netsol_on_hold translate="label">
+							<label>On Hold</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>5</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</netsol_on_hold>
+						<netsol_closed translate="label">
+							<label>Closed</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>6</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</netsol_closed>
+						<netsol_complete translate="label">
+							<label>Complete</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>7</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</netsol_complete>
+						<netsol_suspected_fraud translate="label">
+							<label>Suspected Fraud</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>8</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</netsol_suspected_fraud>
+						<netsol_canceled translate="label">
+							<label>Canceled</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>9</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</netsol_canceled>
+					</fields>
+                </netsol_status_group>-->
+            </groups>
+		</netsolconfig>
+	</sections>
+</config>

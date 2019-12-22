@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+	<modules>
+		<Netsolutions_Offlineordertrack>
+			<active>true</active>
+			<codePool>community</codePool>
+		</Netsolutions_Offlineordertrack>
+	</modules>
+</config>

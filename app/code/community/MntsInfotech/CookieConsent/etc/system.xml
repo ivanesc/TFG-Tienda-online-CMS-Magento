@@ -1,0 +1,115 @@
+<config>
+    <tabs>
+        <mntsinfotechconfig translate="label comment" module="cookieconsent">
+            <label>MNTS Infotech</label>
+            <sort_order>0</sort_order>
+        </mntsinfotechconfig>
+    </tabs>
+    <sections>
+
+        <mntsinfotechcookieconsent translate="label comment" module="cookieconsent">
+            <label>Cookie Consent</label>
+            <tab>mntsinfotechconfig</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>99999</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+
+            <groups>
+                <general translate="label comment" module="cookieconsent">
+                    <label>General</label>
+                    <sort_order>1</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <enabled translate="label comment" module="cookieconsent">
+                            <label>Enabled?</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </enabled>
+                        <lifetime translate="label comment" module="cookieconsent">
+                            <label>Cookie Lifetime (in days)</label>
+                            <comment>Defaults to 31 (days).</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <validate>validate-number</validate>
+                        </lifetime>
+                    </fields>
+                </general>
+                <message translate="label comment" module="cookieconsent">
+                    <label>Message / Notice</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>2</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <message translate="label comment" module="cookieconsent">
+                            <label>Message</label>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </message>
+                        
+                    </fields>
+                </message>
+                <link translate="label comment" module="cookieconsent">
+                    <label>Cookie Policy Link</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>3</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <enabled translate="label comment" module="cookieconsent">
+                            <label>Enabled?</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Link will be displayed after message/notice.</comment>
+                        </enabled>
+                        <link translate="label comment" module="cookieconsent">
+                            <label>Link</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <validate>validate-url</validate>
+                            <comment>Please add link to your cookie policy related content.</comment>
+                            <depends><enabled>1</enabled></depends>
+                        </link>
+                        <linktext translate="label comment" module="cookieconsent">
+                            <label>Link Text</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends><enabled>1</enabled></depends>
+                        </linktext>
+                        
+                    </fields>
+                </link>
+                
+
+            </groups>
+
+        </mntsinfotechcookieconsent>
+
+    </sections>
+</config>

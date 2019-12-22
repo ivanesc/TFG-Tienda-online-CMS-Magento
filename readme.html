@@ -1,0 +1,18 @@
+<html>
+  <head>
+    <title>Artio FormKey Installation Manual</title>
+    <meta content="">
+    <style></style>
+  </head>
+  <body>
+      <h1>Artio FormKey Installation Manual</h1>
+      <h2>Overview</h2>
+      <p>Module Artio_Form key disables "form key" protection introduced to Magento CE 1.8. Form key protection prevent <a href="http://cs.wikipedia.org/wiki/Cross-site_scripting">XSS</a> attacks, but also broken all modules that provide full page caching (<a href="http://stackoverflow.com/questions/12244684/what-is-full-page-caching">FPC</a>).</p>
+      <p>If you are using M-Turbo module on Magento CE 1.8 or higher you should disable "form key" protection by this module. M-Turbo on Magento 1.8 or higher with "form key" makes strange behaviour (customers cannot login, cannot add a product to cart etc.)
+      <h2>Installation</h2>
+      <p>Merge directory 'app' from this package with directory 'app' in your Magento and refresh Magento Cache (System/Cache Management in your Magento backend)</p>
+      <h2>Setting</h2>
+      <p>Go to System/Configuration in your Magento backend and setup the module by follow screenshot.</p>
+      <img src="artio_formkey2.png" />
+  </body>
+</html>

@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Dzinehub_Bestseller>
+			<codePool>community</codePool>
+            <version>1.1.0</version>
+        </Dzinehub_Bestseller>
+    </modules>
+    <global>
+		<blocks>
+            <bestseller>
+				<!--<class>Dzinehub_Bestseller_Block</class>-->
+				<rewrite>
+					<product_bestsellers>Dzinehub_Bestseller_Block_Product_Bestsellers</product_bestsellers>
+				</rewrite>
+			</bestseller>
+		</blocks>		
+	</global>
+	<frontend>
+        <layout>
+            <updates>
+                <Dzinehub_Bestseller>
+                    <file>bestsellers.xml</file>
+                </Dzinehub_Bestseller>
+            </updates>
+        </layout>
+    </frontend>
+</config>

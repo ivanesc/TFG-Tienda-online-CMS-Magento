@@ -1,0 +1,71 @@
+<p>
+<script type="text/javascript" src="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/skin/frontend/default/theme692/js/jquery.backstretch.min.js"></script>
+<script type="text/javascript">// <![CDATA[
+jQuery(function(){
+			// Efecto de trasparencia y animación
+			 jQuery("#galeria").css({ opacity: 0.5 });
+			
+			 jQuery("#galeria").hover(function() {
+				 jQuery("#galeria").animate({opacity: 1}, 300);
+			}, function() {
+				 jQuery("#galeria").animate({opacity: 0.5}, 300);
+			});
+
+			// Asignamos una imagen inicial
+			 jQuery.backstretch("http://s3.amazonaws.com/bc.flashup.com/s3_252631_5357559_989034");
+
+			// Detectamos cada que se le de click a cada enlace
+			//  y se realiza el cambio de la imagen
+			 jQuery("#piedras").click(function(e) {
+ 				e.preventDefault();
+ 				 jQuery.backstretch("http://s3.amazonaws.com/bc.flashup.com/s3_252631_5357559_989034");
+ 			});
+			
+			 jQuery("#orquideas").click(function(e) {
+ 				e.preventDefault();
+ 				 jQuery.backstretch("http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/skin/frontend/default/theme692/images/fondolluvia.gif");
+ 			});
+
+		});
+// ]]></script>
+</p>
+<style type="text/css"><!--
+body{
+			margin: 0;
+			padding: 0;
+			color: #FFF;
+			font-family: Arial, Helvetica, sans-serif;
+		}
+		/*el Div que contiene las imagenes*/
+		#galeria{
+			width: 500px;
+			height: 170px;
+			margin: 0 auto;
+			padding: 0;
+			background-color: #000;
+		}
+		#galeria ul{
+			width: 400px;
+			list-style-type: none;
+			margin: 0 auto;
+			padding: 20px 0 0 0;
+		}
+		#galeria li{
+			float: left;
+			display: inline;
+		}
+		img{
+			border: 0;
+		}
+		p{
+			clear: both;
+			text-align: center
+		}
+--></style>
+<div id="galeria">
+<ul id="minis">
+<li><a id="piedras" href="#"><img alt="" src="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/skin/frontend/default/theme692/images/fotofondo_opt.gif" /></a></li>
+<li><a id="orquideas" href="#"><img alt="" src="http://trasterodemaryshop.com/TiendaManualidadesyCreatividad/skin/frontend/default/theme692/images/fondo_lluvia.jpg" /></a></li>
+</ul>
+<p>You select the background you prefer <br> to store page in which is</p>
+</div>

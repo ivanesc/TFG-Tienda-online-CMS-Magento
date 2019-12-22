@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <dzinehub_index_bestsellers>
+        <reference name="content">
+			<blocks>
+				<bestseller>
+					<class>Dzinehub_Bestseller_Block</class>
+					<rewrite>
+						<product_bestsellers>Dzinehub_Bestseller_Block_Product_Bestsellers</product_bestsellers>
+					</rewrite>
+				</bestseller>
+			</blocks>
+			<models>
+				<bestseller>
+					<class>Dzinehub_Bestseller_Model</class>
+				</bestseller>
+			</models>
+        </reference>
+    </dzinehub_index_bestsellers>
+</layout> 

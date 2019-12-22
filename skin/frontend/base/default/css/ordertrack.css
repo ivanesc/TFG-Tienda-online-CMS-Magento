@@ -1,0 +1,85 @@
+
+.trackorder-index-index .page-title ,.trackorder-index-viewtrackorder .page-title {border: 0 none; height: 25px;}
+.trackorder-index-index .continue-shopping,.trackorder-index-viewtrackorder .continue-shopping {padding-bottom: 4px; text-align: right;}
+.table-your-order {border: 4px solid #E8E7E3; width: 100%;font-size: 11px;margin-bottom: 20px;}	
+.tr-info-order td {border-bottom: 2px solid #E8E7E3;}
+.trackorder-index-index .field {margin-bottom: 15px;}
+.trackorder-index-index .input-box {float: none;}
+.trackorder-index-index .dv-track-order input {width: 190px;}
+.dv-track-order .continue-shopping a {color: #FF6666;font-size: 11px;}
+.dv-track-order .continue-shopping img {margin-bottom: 0; padding: 0; vertical-align: middle;}
+.trackorder-index-index  .messages .error-msg {border-top: none !important;}
+.table-your-order span.bold-text {font-weight: bold;}
+.col1-tbl td {padding: 20px 0 30px 0;}
+.table-your-order .nm-text {font-weight: normal; text-transform: capitalize;}
+.table-your-order .red-text {color: #FF6666; font-weight: bold; text-transform: uppercase;}
+.table-your-order .col3-tbl td {padding: 15px 0;}
+.table-your-order td.td-firts, .data-table td.td-firts, .data-table .th-only-fix {padding-left: 30px;}
+.table-your-order .border-tbl-bt td {border-bottom: 2px solid #EFEFEF; padding-bottom: 5px;}
+.trackorder-index-viewtrackorder .data-table img {float: left; padding-right: 20px;}
+.trackorder-index-viewtrackorder #my-orders-table { 
+    -moz-border-bottom-colors: none;
+    -moz-border-image: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    border-color: #E8E7E3;
+    border-style: solid;
+    border-width: 4px 4px 0;
+    margin-bottom: 0;
+}
+.trackorder-index-viewtrackorder #my-orders-table tbody tr td {padding-top: 10px; border-bottom: 2px solid #E8E7E3;}
+.trackorder-index-viewtrackorder #my-orders-table thead th.th-only-fix {padding-left:30px !important; width: 139px;}
+.hs-wit {width: 165px;}
+td.td-fixed {padding-top: 5px !important;}
+.sales-order-view #my-orders-table tbody tr td {padding-top: 10px;}	
+.track-order {margin-top:10px !important;/*background-color: #000000 !important; border-color: #000000 !important; border-radius: 14px; color: #FFFFFF !important; height: 25px !important; line-height: 25px !important; width: 100px;*/}
+
+.orderResultFalse {margin-top: 30px; border-top: 1px solid #CCCCCC; padding: 20px 0; display: none;}
+.orderResult {margin-top: 30px; border-top: 1px solid #CCCCCC; padding: 20px 0; display: none;}
+.orderResult .rsStatus1 {margin: 10px 0;}
+.orderResult .rsStatus1 ul li {display: inline-block; padding: 10px; border: 1px solid;}
+.orderResult .rsStatus1 ul li.active {background-color: #000000; color: #ffffff; border: 1px solid #000000;}
+.orderResult .rsCarrier, .orderResult .rsTraking, .orderResult .rsShipped {display: none;}
+.orderResult .orderLinks {margin-top: 10px;}
+.orderResult .orderLinks button.button span {background-color: transparent; color: #000000; text-decoration: underline; border: none; padding: 0;}
+.divLoading {margin-top: 10px; display: none;}
+.loadingAjax {background: url("../images/order-loader.gif") no-repeat scroll 0 0 rgba(0, 0, 0, 0); padding-left: 23px;}
+.orderResult .dataImage {float: left; padding-right: 20px;}
+.orderResult .dataTotal {text-align: right;}
+.orderResult .detailTitle {color: #0A263C; font-size: 20px; margin: 20px 0;}
+.orderResult .order-info-address {margin-top: 15px;}
+.orderResult .detailSummary {padding: 5px 15px; background: none repeat scroll 0 0 #DEE5E8; border: 1px solid #BEBCB7;}
+.orderResult .detailSummary table {width: 100%;}
+.orderResult .detailSummary td {text-align: right;}
+.orderResult .detailSummary td.s-text {width: 90%;}
+.orderResult .detailSummary td.sTotal {font-weight: bold; font-size: 15px;}
+.orderResult .detailSummary td strong {font-size: 15px;}
+.orderResult .detailSummary td.sPayment {font-style: italic;}
+.orderResult .trakingTitle {color: #0A263C; font-size: 20px; margin: 20px 0;}
+.orderResult .trackCarrier {color: #0000FF; font-size: 14px; font-weight: bold;}
+#track-order-form .field label {float:left; width:150px;padding-top: 6px;}
+#track-order .field label {float:left; width:165px;padding-top: 6px;}
+#track-order-forgotorder .field label {float:left; width:160px;padding-top: 6px;}
+.status2Value,.carrierValue,.billedValue,.shippedValue{font-weight:bold;}
+.trackorder-notajax .orderResult {display: block; margin-top: 0; padding: 0; margin-bottom: 15px;}
+.trackorder-notajax .orderResult .rsNo {margin-top: 15px;}
+.orderResult #orderdetail-html .dataStyle{padding:0 0 0 4px;float: left;}
+.orderResult .dataName{margin:0 0 0 0 !important;}
+#error_status{color:#ff0000;font-size: 14px;}
+#track-order-form .input-box{padding-bottom:11px; margin-top:5px;float:left;}
+#track-order .input-box{padding-bottom:11px; margin-top:5px;float:left;}
+#track-order-form .input-text{width:300px;}
+#track-order-forgotorder .input-text{width:300px;}
+.forgotOrderNumber{margin-top:10px !important;/*background-color: #000000 !important; border-color: #000000 !important; border-radius: 14px; color: #FFFFFF !important; height: 25px !important; line-height: 25px !important; width: 100px;*/}
+.content-trackorder{width:500px;}
+
+@media only screen and (max-width: 480px) {
+    .orderResult .rsStatus1 ul li {display: block;}
+    .trackorder-index-index .dv-track-order input {width: 100%;}
+    .orderResult .data-table {width: 100%;}
+    .orderResult .data-table td {padding: 2px;}
+    .orderResult .data-table th {padding: 0;}
+    .orderResult .dataImage {padding-right: 10px;}
+    .orderResult .dataName {font-size: 12px; float: left;}
+}

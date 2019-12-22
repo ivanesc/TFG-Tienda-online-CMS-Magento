@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Dzinehub_Bestseller>
+            <active>true</active>
+            <codePool>community</codePool>
+        </Dzinehub_Bestseller>
+    </modules>
+</config>
