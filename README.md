@@ -1,11 +1,12 @@
 # TFG-Tienda-online-CMS-Magento
 
-Tienda online bilingüe (español e inglés) adaptada a dispositivos móviles para la compra y exposición de un amplio catálogo de materiales, accesorios e ideas creativas ligadas al arte de las manualidades, creada y desarrollada con el CMS Magento. Es completamente funcional y operativa además de complementada con una serie de funcionalidades básicas de un E-Commerce y otras más avanzadas incorporadas posteriormente así como un diseño atractivo, intuitivo y original para el potencial cliente que le ayudarán en su proceso de compra y navegabilidad online.
-En la tienda pueden verse una serie de banners en distintas partes de la navegación que pretenden dar a conocer a los clientes la existencia de promociones como gastos de envío inferiores o gratis para pedidos superiores a un determinado precio, descuentos si se supera el precio de una compra, condiciones para recibir un cupón descuento, ofertas de 3x2, etc. También se puede consultar un ránking de los productos más vendidos y más vistos en la página principal así como las novedades.
+##### Tienda online bilingüe (español e inglés) adaptada a dispositivos móviles para la compra y exposición de un amplio catálogo de materiales, accesorios e ideas creativas ligadas al arte de las manualidades, creada y desarrollada con el CMS Magento. Es completamente funcional y operativa además de complementada con una serie de funcionalidades básicas de un E-Commerce y otras más avanzadas incorporadas posteriormente así como un diseño atractivo, intuitivo y original para el potencial cliente que le ayudarán en su proceso de compra y navegabilidad online. ######
+
+###### En la tienda pueden verse una serie de banners en distintas partes de la navegación que pretenden dar a conocer a los clientes la existencia de promociones como gastos de envío inferiores o gratis para pedidos superiores a un determinado precio, descuentos si se supera el precio de una compra, condiciones para recibir un cupón descuento, ofertas de 3x2, etc. También se puede consultar un ránking de los productos más vendidos y más vistos en la página principal así como las novedades. ######
 
 ### Aspectos funcionales más destacados
 
-###### Rol Administrador (se indican las funcionalidades experimentadas en el proyecto de entre las que se ofrecen con Magento para la administración de una tienda)
+#### Rol Administrador (se indican las funcionalidades experimentadas en el proyecto de entre las que se ofrecen con Magento para la administración de una tienda)
 
 - Gestión categorías y subcategorías (añadir, eliminar o editar)
 - Gestión productos (añadir, eliminar o editar). Incluye gestión de los atributos de cada ficha de producto y aspectos de diseño y/o estructuración visual
@@ -31,7 +32,7 @@ En la tienda pueden verse una serie de banners en distintas partes de la navegac
 - Establecer encuentas dirigidas a un sector específico de usuarios de la tienda o en general para conocer la opinión acerca de diversos aspectos
 
 
-###### Rol Cliente o usuario registrado
+#### Rol Cliente o usuario registrado
 
 - Sistema de creación y autenticación cuenta usuario
 - Realizar búsquedas en la tienda con distintos filtros: rango de precios, categoría, producto, etc.
@@ -49,13 +50,13 @@ En la tienda pueden verse una serie de banners en distintas partes de la navegac
 - Cambiar el idioma de la tienda
 - Consultar mecanismos de contacto con los responsables de la tienda y/o personal técnico e información específica de los detalles de venta asociados a la tienda ya sea a través de un formulario de contacto u otros medios como foros, email, etc.
 
-###### Rol Usuario invitado o no registrado
+#### Rol Usuario invitado o no registrado
 
 - Puede llevar a cabo las mismas funciones que un usuario registrado a excepción de poder crearse una cuenta y acceder con ella o cualquier función establecida para llevar a cabo una compra y que requiera estar registrado como realizar comentarios (se podría habilitar si se desea en el panel de administración pero en este caso no se consideró oportuno)
 
 ## Comenzando 🚀
 
-_Estas instrucciones te permitirán obtener una copia del proyecto en funcionamiento en tu máquina local para propósitos de desarrollo y pruebas. Sólo podrá replicarse la estructura general o layout con el diseño de bloques en base al mismo tema que se incorporó al proyecto, aunque se pueden usar otros que vienen por defecto en el directorio skin de Magento. No se proporcionan datos de clientes, productos, pedidos, etc. Las imágenes proporcionadas con este proyecto incluyendo el logo, pese a ser las mismas que se usaron en el proyecto original, permiten ser empleadas si se desea puesto que hoy en día la tienda ya no usa dichas imágenes ni logo en su portal web, no incurriendo en ningún tipo de delito fiscal, aunque la temática a la que responde su objeto de negocio sigue siendo la misma pero con distintas secciones y contenidos _
+_Estas instrucciones te permitirán obtener una copia del proyecto en funcionamiento en tu máquina local para propósitos de desarrollo y pruebas. Sólo podrá replicarse la estructura general o layout con el diseño de bloques en base al mismo tema que se incorporó al proyecto, aunque se pueden usar otros que vienen por defecto en el directorio skin de Magento. No se proporcionan datos de clientes, productos, pedidos, etc. Las imágenes proporcionadas con este proyecto incluyendo el logo, pese a ser las mismas que se usaron en el proyecto original, permiten ser empleadas si se desea puesto que hoy en día la tienda que se mantiene en producción para un cliente no ficticio ya no usa o reproduce dichas imágenes ni logo en su portal web, no incurriendo en ningún tipo de delito fiscal, aunque la temática a la que responde su objeto de negocio sigue siendo la misma pero con distintas secciones y contenidos_
 
 Mira **"Instrucciones para despliegue e instalación"** para conocer como desplegar el proyecto.
 
@@ -78,16 +79,22 @@ Los requerimientos de software necesarios para hacer funcionar y desplegar corre
 6. Cambiar los permisos a 777 de forma recursiva para las carpetas app/etc, var y media. Esto es necesario para que todo vaya bien durante el proceso de instalación. Después de instalar Magento se cambian los permisos a 755 para app/etc. Todo esto se puede hacer con Filezilla
 7. Acceder mediante el navegador a la ruta donde tengamos alojado el fichero de instalación de Magento. Si se trata de un servidor local montado por ejemplo con XAMPP sería http://localhost/DirectorioMagento. Una vez ahí se entra al asistente de instalación
 8. Indicar la BD a usar (se supone que ya estaría creada desde el paso 2) junto a los datos de acceso a dicha BD, la URL de acceso a la navegación por el frontend de la tienda para cualquier usuario y la URL de administración para acceso al backend por parte de un administrador para lo cual habrá que indicar las credenciales de acceso para el usuario administrador
+9. Sobreescribir el contenido del directorio raíz de Magento por todos los ficheros y carpetas que vienen en este repositorio
+10. A partir de aquí todo se configura desde el panel de administración accesible con la ruta ya establecida en la instalación (temas, plugins nuevos o que vienen ya con este proyecto, categorías, clientes, aspectos propios del sistema, promociones, etc.)
 
-***IMPORTANTE 1***: Si se usan los mismos datos de acceso configurados para este proyecto no se podrá acceder ni al frontend ni al backend para administración de la tienda puesto que ya no se dispone del hosting de alojamiento con el consecuente dominio usado para el proyecto. Por ello no se facilita el fichero .sql de la BD usada para este proyecto de tal forma que se tenga que realizar una instalación limpia del CMS con una BD nueva para indicar las URL de acceso a la tienda. Una vez que ya se pueda entrar en el panel de administración desde ahí se puede cambiar también la ruta de acceso tanto al backend como al frontend. Los ficheros de este proyecto si se quieren probar con el mismo tema y estructura se sobreescribirán en el directorio del servidor donde se haya instalado Magento. En ningún caso se tendrán los mismos contenidos de la tienda puesto que esto se reserva para uso exclusivo del propietario de tal forma que no se pueda compartir dicha información.
+***IMPORTANTE 1*** 
 
-***IMPORTANTE 2***: En este proyecto se usó un tema específico que se fue adaptando para estructurar los contenidos de la tienda en base a las necesidades de un cliente potencial. Se podrían descargar los ficheros de otro tema desde la tienda de Magento y transferir el contenido de la carpeta app a la ruta "app/design/frontend/default" así como el contenido de la carpeta skin a la ruta "skin/frontend/default" del directorio donde se encuentra Magento. Por último desde el backend se va a Sistema > Configuración > General> Diseño para establecer el nombre del paquete y tema o plantilla a usar.
+> Si se usan los mismos datos de acceso configurados para este proyecto no se podrá acceder ni al frontend ni al backend para administración de la tienda puesto que ya no se dispone del hosting de alojamiento con el consecuente dominio usado para el proyecto. Por ello no se facilita el fichero .sql de la BD usada para este proyecto de tal forma que se tenga que realizar una instalación limpia del CMS con una BD nueva para indicar las URL de acceso a la tienda. Una vez que ya se pueda entrar en el panel de administración desde ahí se puede cambiar también la ruta de acceso tanto al backend como al frontend. Los ficheros de este proyecto si se quieren probar con el mismo tema y estructura se sobreescribirán en el directorio del servidor donde se haya instalado Magento. En ningún caso se tendrán los mismos contenidos de la tienda puesto que esto se reserva para uso exclusivo del propietario de tal forma que no se pueda compartir dicha información.
+
+***IMPORTANTE 2*** 
+
+> En este proyecto se usó un tema específico que se fue adaptando para estructurar los contenidos de la tienda en base a las necesidades de un cliente potencial. Se podrían descargar los ficheros de otro tema desde la tienda de Magento y transferir el contenido de la carpeta app a la ruta "app/design/frontend/default" así como el contenido de la carpeta skin a la ruta "skin/frontend/default" del directorio donde se encuentra Magento. Por último desde el backend se va a Sistema > Configuración > General> Diseño para establecer el nombre del paquete y tema o plantilla a usar.
 
 ## Manual de usuario 📖
 
-A continuación expongo un link que lleva a un tutorial detallado de cómo un usuario puede navegar por los contenidos de la tienda para irse familiarizando con los posibles modos de interacción que se le ofrecen:
+A continuación expongo un link que lleva a un tutorial detallado sobre cómo se podría llegar a interactuar con la tienda desarrollada en este proyecto, teniendo en cuenta que a la hora de replicar las carpetas y ficheros que aquí se proporcionan no se conseguirá el mismo resultado inmediato puesto que se tendría una estructura y disposición de contenidos similar si se usa el mismo tema y plugins proporcionados, pero el desarrollador debería ir configurando y adaptando las distintas secciones de la tienda buscando facilitarle un aprendizaje propio que le lleven a hacer pruebas sobre cómo se administra una tienda con Magento además de orientar los datos internos de la tienda a una existente o potencial cartera de clientes y necesidades de negocio donde se tenga información propia sobre gestión de pedidos, catálogo, promociones, formas de pago, clientes, etc.
 
-[Acceso a manual usuario] (https://drive.google.com/file/d/1Fu9--ypoo6tEWCV1V9SVeihi1LTH2Q6d/view?usp=sharing)
+[Acceso a manual usuario](https://drive.google.com/file/d/1Fu9--ypoo6tEWCV1V9SVeihi1LTH2Q6d/view?usp=sharing)
 
 
 
